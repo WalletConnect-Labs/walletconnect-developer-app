@@ -1,0 +1,36 @@
+dependencies: \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTRootView.m \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTRootViewDelegate.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTRootViewInternal.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTKeyCommands.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTRootContentView.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTView.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTTouchHandler.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Modules/RCTUIManager.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTViewManager.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Modules/RCTUIManagerUtils.h

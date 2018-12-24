@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/Surface/RCTSurfaceRootShadowView.m \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/Surface/RCTSurfaceRootShadowView.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTShadowView.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTLayout.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/Surface/RCTSurfaceRootShadowViewDelegate.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Modules/RCTI18nUtil.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Views/RCTShadowView+Layout.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Modules/RCTUIManagerUtils.h \
+  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/Base/RCTAssert.h
