@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  Alert,
-  Image,
-  TouchableOpacity,
-  Clipboard,
-  View,
-  TouchableOpacity
-} from "react-native";
+import { Alert, Image, Clipboard, View, TouchableOpacity } from "react-native";
 import { apiGetAccountAssets } from "../helpers/api";
 import ScrollViewContainer from "../components/ScrollViewContainer";
 import Card from "../components/Card";
