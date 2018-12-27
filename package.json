@@ -2,10 +2,29 @@
   "name": "walletconnect-developer-app",
   "version": "0.1.0",
   "private": true,
+  "dependencies": {
+    "bignumber.js": "^8.0.1",
+    "prop-types": "^15.6.2",
+    "react": "16.3.1",
+    "react-native": "~0.55.2",
+    "react-native-gesture-handler": "^1.0.12",
+    "react-native-image-placeholder": "^1.0.14",
+    "react-navigation": "^3.0.9",
+    "styled-components": "^4.1.3"
+  },
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest"
+  },
   "devDependencies": {
+    "@types/bignumber.js": "^5.0.0",
     "@types/jest": "^22.2.3",
+    "@types/prop-types": "^15.5.8",
     "@types/react": "^16.3.14",
     "@types/react-native": "^0.55.14",
+    "@types/react-navigation": "^3.0.1",
     "@types/react-test-renderer": "^16.0.1",
     "babel-preset-react-native-stage-0": "^1.0.1",
     "jest": "^23.6.0",
@@ -16,12 +35,6 @@
     "ts-jest": "^22.4.6",
     "tslib": "^1.9.1",
     "typescript": "^2.8.3"
-  },
-  "scripts": {
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "test": "jest"
   },
   "jest": {
     "globals": {
@@ -45,9 +58,5 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
-  },
-  "dependencies": {
-    "react": "16.3.1",
-    "react-native": "~0.55.2"
   }
 }

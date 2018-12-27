@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.cpp \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.h
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.cpp \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/ReactCommon/privatedata/PrivateDataBase.h

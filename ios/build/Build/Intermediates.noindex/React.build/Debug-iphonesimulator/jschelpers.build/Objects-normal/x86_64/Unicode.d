@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/ReactCommon/jschelpers/Unicode.cpp \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/ReactCommon/jschelpers/Unicode.h
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/ReactCommon/jschelpers/Unicode.cpp \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/ReactCommon/jschelpers/Unicode.h

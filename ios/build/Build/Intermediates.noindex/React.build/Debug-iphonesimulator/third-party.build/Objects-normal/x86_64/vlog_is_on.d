@@ -1,12 +1,12 @@
 dependencies: \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/third-party/glog-0.3.4/src/vlog_is_on.cc \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/utilities.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/mutex.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/third-party/glog-0.3.4/src/config.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/config.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/logging.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/log_severity.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/vlog_is_on.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/commandlineflags.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/raw_logging.h \
-  /Users/pedrogomes/Repositories/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/googleinit.h
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/third-party/glog-0.3.4/src/vlog_is_on.cc \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/utilities.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/mutex.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/third-party/glog-0.3.4/src/config.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/config.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/logging.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/log_severity.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/vlog_is_on.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/commandlineflags.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/glog/raw_logging.h \
+  /Users/pedrogomes/_walletconnect-labs/walletconnect-developer-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/googleinit.h
