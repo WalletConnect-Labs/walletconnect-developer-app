@@ -8,6 +8,8 @@ import {
 import WalletScreen from "./screens/WalletScreen";
 import ScanScreen from "./screens/ScanScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import SessionRequestModal from "./modals/SessionRequestModal";
+import CallRequestModal from "./modals/CallRequestModal";
 
 const WalletStack = createStackNavigator({
   Wallet: WalletScreen
@@ -21,7 +23,7 @@ const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
 
-const AppNavigator = createBottomTabNavigator(
+const MainTabNavigator = createBottomTabNavigator(
   {
     Wallet: WalletStack,
     Scan: ScanStack,
@@ -67,6 +69,23 @@ const AppNavigator = createBottomTabNavigator(
       activeTintColor: "#3b99fc",
       inactiveTintColor: "gray"
     }
+  }
+);
+
+const ModalStack = createStackNavigator({
+  SessionRequest: SessionRequestModal,
+  CallRequest: CallRequestModal
+});
+
+const AppNavigator = createStackNavigator(
+  {
+    Main: MainTabNavigator,
+    Modal: ModalStack
+  },
+  {
+    initialRouteName: "Main",
+    headerMode: "none",
+    mode: "modal"
   }
 );
 
