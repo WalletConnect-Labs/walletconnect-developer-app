@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Alert, Image, Clipboard, View, TouchableOpacity } from "react-native";
-import { apiGetAccountAssets } from "../helpers/api";
+import { connect } from "react-redux";
+import { accountGetAssets } from "../redux/_account";
+import { IAssetData } from "../helpers/types";
 import ScrollViewContainer from "../components/ScrollViewContainer";
 import Card from "../components/Card";
 import Section from "../components/Section";
@@ -14,42 +16,22 @@ class WalletScreen extends React.Component<any, any> {
     title: "Wallet",
     headerTitle: "Wallet"
   };
-
-  state = {
-    loading: false,
-    chainId: 1,
-    address: "0x9b7b2B4f7a391b6F14A81221AE0920A9735B67Fb",
-    assets: []
-  };
   componentDidMount() {
-    this.getAccountAssets();
+    this.props.accountGetAssets();
   }
   copyToClipboard = () => {
     const { address } = this.state;
     Clipboard.setString(address);
     Alert.alert("Copied", "Address copied to clipboard");
   };
-  getAccountAssets = async () => {
-    const { address, chainId } = this.state;
-    if (address) {
-      await this.setState({ loading: true });
-      try {
-        const assets = await apiGetAccountAssets(address, chainId);
-        await this.setState({ loading: false, assets });
-      } catch (error) {
-        console.error(error);
-        await this.setState({ loading: false });
-      }
-    }
-  };
   renderAssets = () => {
-    const { assets } = this.state;
+    const { assets } = this.props;
     if (!assets.length) {
       return null;
     }
     return (
       <Section>
-        {assets.map((asset, index) => (
+        {assets.map((asset: IAssetData, index: number) => (
           <View key={index}>
             <Separator />
             <AssetRow asset={asset} />
@@ -60,11 +42,11 @@ class WalletScreen extends React.Component<any, any> {
   };
 
   render() {
-    const { loading, address } = this.state;
+    const { loading, address } = this.props;
     return (
       <ScrollViewContainer
         refreshing={loading}
-        onRefresh={this.getAccountAssets}
+        onRefresh={this.props.accountGetAssets}
       >
         <Card>
           <View style={{ flexDirection: "row", height: 50 }}>
@@ -99,4 +81,13 @@ class WalletScreen extends React.Component<any, any> {
   }
 }
 
-export default WalletScreen;
+const reduxProps = (reduxState: any) => ({
+  loading: reduxState.account.loading,
+  address: reduxState.account.address,
+  assets: reduxState.account.assets
+});
+
+export default connect(
+  reduxProps,
+  { accountGetAssets }
+)(WalletScreen);

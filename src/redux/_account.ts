@@ -76,7 +76,7 @@ export const accountGetTransactions = (address: string) => async (
 const INITIAL_STATE = {
   loading: false,
   chainId: 1,
-  address: "",
+  address: "0x9b7b2B4f7a391b6F14A81221AE0920A9735B67Fb",
   assets: [
     {
       symbol: "ETH",
