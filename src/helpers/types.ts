@@ -25,6 +25,75 @@ export interface ITxData {
   data: string;
 }
 
+export interface IBlockScoutTx {
+  value: string;
+  txreceipt_status: string;
+  transactionIndex: string;
+  to: string;
+  timeStamp: string;
+  nonce: string;
+  isError: string;
+  input: string;
+  hash: string;
+  gasUsed: string;
+  gasPrice: string;
+  gas: string;
+  from: string;
+  cumulativeGasUsed: string;
+  contractAddress: string;
+  confirmations: string;
+  blockNumber: string;
+  blockHash: string;
+}
+
+export interface IBlockScoutTokenTx {
+  value: string;
+  transactionIndex: string;
+  tokenSymbol: string;
+  tokenName: string;
+  tokenDecimal: string;
+  to: string;
+  timeStamp: string;
+  nonce: string;
+  input: string;
+  hash: string;
+  gasUsed: string;
+  gasPrice: string;
+  gas: string;
+  from: string;
+  cumulativeGasUsed: string;
+  contractAddress: string;
+  confirmations: string;
+  blockNumber: string;
+  blockHash: string;
+}
+
+export interface IParsedTx {
+  timeStamp: string;
+  hash: string;
+  from: string;
+  to: string;
+  nonce: string;
+  gasPrice: string;
+  gasUsed: string;
+  fee: string;
+  value: string;
+  input: string;
+  error: boolean;
+  operations: ITxOperation[];
+}
+
+export interface ITxOperation {
+  symbol: string;
+  name: string;
+  decimals: string;
+  contractAddress: string;
+  value: string;
+  from: string;
+  to: string;
+  functiomName: string;
+}
+
 export interface IGasPricesResponse {
   fastWait: number;
   avgWait: number;
