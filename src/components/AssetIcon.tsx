@@ -3,48 +3,47 @@ import styled from "styled-components";
 import { StyleSheet } from "react-native";
 import ImageLoad from "react-native-image-placeholder";
 
-const StyledCircle = styled.View`
-  margin-left: 14px;
-  height: 36px;
-  width: 36px;
-  margin-right: 15px;
-  border-radius: 18px;
-  border-color: #d4d4d7;
-  border-width: 1px;
-  background-color: #ffffff;
+const size = 40;
+
+const SCircle = styled.View`
+  margin: 0 15px;
+  height: ${size}px;
+  width: ${size}px;
+  border-radius: ${size / 2}px;
+  background-color: #fff;
 `;
 
 const styles = StyleSheet.create({
   circleIcon: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    margin: 2
+    height: size,
+    width: size,
+    borderRadius: size / 2
   }
 });
 
-function getIconUrl(address: string) {
-  // if ether
-  if (!address) {
-    return "https://github.com/TrustWallet/tokens/raw/master/coins/60.png";
+function getIconUrl(contractAddress: string) {
+  if (!contractAddress) {
+    return require("../assets/ethereum.png");
   }
-  // if tokens
-  return `https://raw.githubusercontent.com/TrustWallet/tokens/master/images/${address}.png`;
+
+  return {
+    uri: `https://raw.githubusercontent.com/TrustWallet/tokens/master/images/${contractAddress}.png`
+  };
 }
 
 const AssetIcon = (props: any) => (
-  <StyledCircle>
+  <SCircle>
     <ImageLoad
-      source={{ uri: getIconUrl(props.asset.contractAddress) }}
+      source={getIconUrl(props.asset.contractAddress)}
       style={styles.circleIcon}
       isShowActivity={false}
       placeholderSource={require("../assets/default-token.png")}
       customImagePlaceholderDefaultStyle={styles.circleIcon}
       loadingStyle={styles.circleIcon}
-      borderRadius={15}
+      borderRadius={size / 2}
       placeholderStyle={styles.circleIcon}
     />
-  </StyledCircle>
+  </SCircle>
 );
 
 export default AssetIcon;

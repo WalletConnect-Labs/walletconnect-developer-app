@@ -27,18 +27,18 @@ const MainTabNavigator = createBottomTabNavigator(
         switch (routeName) {
           case "Account":
             iconSource = focused
-              ? require("./assets/wallet-icon-blue.png")
-              : require("./assets/wallet-icon.png");
+              ? require("./assets/wallet-blue.png")
+              : require("./assets/wallet-gray.png");
             break;
           case "Scan":
             iconSource = focused
-              ? require("./assets/scan-icon-blue.png")
-              : require("./assets/scan-icon.png");
+              ? require("./assets/scan-blue.png")
+              : require("./assets/scan-gray.png");
             break;
           case "Settings":
             iconSource = focused
-              ? require("./assets/settings-icon-blue.png")
-              : require("./assets/settings-icon.png");
+              ? require("./assets/settings-blue.png")
+              : require("./assets/settings-gray.png");
             break;
           default:
             break;

@@ -1,23 +1,31 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import { ScrollView, RefreshControl } from "react-native";
 import Container from "./Container";
 
-const ScrollViewContainer = (props: any) => {
-  const refreshControl = (
-    <RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />
-  );
-  return (
-    <ScrollView refreshControl={refreshControl} {...props}>
-      <Container>{props.children}</Container>
-    </ScrollView>
-  );
-};
-
-ScrollViewContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  refreshing: PropTypes.bool,
-  onRefresh: PropTypes.func
-};
+class ScrollViewContainer extends React.Component<any, any> {
+  state = {
+    firstLoad: true
+  };
+  componentDidUpdate(prevProps: any, prevState: any) {
+    if (prevState.firstLoad) {
+      if (prevProps.refreshing && !this.props.refreshing) {
+        this.setState({ firstLoad: false });
+      }
+    }
+  }
+  render() {
+    const refreshControl = (
+      <RefreshControl
+        refreshing={!this.state.firstLoad && this.props.refreshing}
+        onRefresh={this.props.onRefresh}
+      />
+    );
+    return (
+      <ScrollView refreshControl={refreshControl}>
+        <Container>{this.props.children}</Container>
+      </ScrollView>
+    );
+  }
+}
 
 export default ScrollViewContainer;

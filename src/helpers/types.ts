@@ -3,7 +3,7 @@ export interface IAssetData {
   name: string;
   decimals: string;
   contractAddress: string;
-  balance: string;
+  balance?: string;
 }
 
 export interface IChainData {
@@ -80,14 +80,12 @@ export interface IParsedTx {
   value: string;
   input: string;
   error: boolean;
+  asset: IAssetData;
   operations: ITxOperation[];
 }
 
 export interface ITxOperation {
-  symbol: string;
-  name: string;
-  decimals: string;
-  contractAddress: string;
+  asset: IAssetData;
   value: string;
   from: string;
   to: string;

@@ -29,7 +29,6 @@ export const accountUpdateChainId = (chainId: number) => (
   getState: any
 ) => {
   const { address } = getState().account;
-  console.log("accountUpdateChainId chainId", chainId);
   dispatch({ type: ACCOUNT_UPDATE_CHAIN_ID, payload: chainId });
   if (address) {
     dispatch(accountGetAssets());
@@ -49,11 +48,11 @@ export const accountGetAssets = () => async (dispatch: any, getState: any) => {
   }
 };
 
-export const accountGetTransactions = (address: string) => async (
+export const accountGetTransactions = () => async (
   dispatch: any,
   getState: any
 ) => {
-  const { chainId } = getState().account;
+  const { chainId, address } = getState().account;
   dispatch({ type: ACCOUNT_GET_TRANSACTIONS_REQUEST });
   try {
     const transactions = await apiGetAccountTransactions(address, chainId);
@@ -74,7 +73,7 @@ const INITIAL_STATE = {
     {
       symbol: "ETH",
       name: "Ethereum",
-      decimals: 18,
+      decimals: "18",
       contractAddress: "",
       balance: "0"
     }

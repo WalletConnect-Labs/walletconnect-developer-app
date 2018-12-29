@@ -2,18 +2,18 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledContainer = styled.View`
+const SContainer = styled.View`
   flex: 1;
   justify-content: ${(props: any) => (props.center ? "center" : "flex-start")};
   align-items: ${(props: any) => (props.center ? "center" : "flex-start")};
-  background-color: #eeeeee;
+  /* background-color: #fff; */
   padding: 0;
 `;
 
 const Container = (props: any) => (
-  <StyledContainer center={props.center} {...props}>
+  <SContainer center={props.center} {...props}>
     {props.children}
-  </StyledContainer>
+  </SContainer>
 );
 
 Container.propTypes = {

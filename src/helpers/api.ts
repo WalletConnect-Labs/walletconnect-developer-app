@@ -25,10 +25,9 @@ export async function apiGetAccountBalance(address: string, chainId: number) {
   const network = chainData.network.toLowerCase();
   const module = "account";
   const action = "balance";
-
-  const result = await api.get(
-    `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`
-  );
+  const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
+  console.log(`GET ${url}`);
+  const result = await api.get(url);
   return result;
 }
 
@@ -38,9 +37,9 @@ export async function apiGetAccountTokenList(address: string, chainId: number) {
   const network = chainData.network.toLowerCase();
   const module = "account";
   const action = "tokenlist";
-  const result = await api.get(
-    `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`
-  );
+  const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
+  console.log(`GET ${url}`);
+  const result = await api.get(url);
   return result;
 }
 
@@ -54,9 +53,9 @@ export async function apiGetAccountTokenBalance(
   const network = chainData.network.toLowerCase();
   const module = "account";
   const action = "tokenbalance";
-  const result = await api.get(
-    `/${chain}/${network}/api?module=${module}&action=${action}&contractaddress=${contractAddress}&address=${address}`
-  );
+  const url = `/${chain}/${network}/api?module=${module}&action=${action}&contractaddress=${contractAddress}&address=${address}`;
+  console.log(`GET ${url}`);
+  const result = await api.get(url);
   return result;
 }
 
@@ -127,9 +126,9 @@ export async function apiGetAccountTxList(address: string, chainId: number) {
   const network = chainData.network.toLowerCase();
   const module = "account";
   const action = "txlist";
-  const result = await api.get(
-    `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`
-  );
+  const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
+  console.log(`GET ${url}`);
+  const result = await api.get(url);
   return result;
 }
 
@@ -139,9 +138,9 @@ export async function apiGetAccountTokenTx(address: string, chainId: number) {
   const network = chainData.network.toLowerCase();
   const module = "account";
   const action = "tokentx";
-  const result = await api.get(
-    `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`
-  );
+  const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
+  console.log(`GET ${url}`);
+  const result = await api.get(url);
   return result;
 }
 
@@ -154,8 +153,15 @@ export async function apiGetAccountTransactions(
 
   let transactions: IParsedTx[] = txList.map(
     (tx: IBlockScoutTx): IParsedTx => {
+      const asset: IAssetData = {
+        symbol: "ETH",
+        name: "Ethereum",
+        decimals: "18",
+        contractAddress: ""
+      };
+
       const parsedTx: IParsedTx = {
-        timeStamp: multiply(tx.timeStamp, 100),
+        timeStamp: multiply(tx.timeStamp, 1000),
         hash: tx.hash,
         from: tx.from,
         to: tx.to,
@@ -166,6 +172,7 @@ export async function apiGetAccountTransactions(
         value: tx.value,
         input: tx.input,
         error: tx.isError === "1",
+        asset,
         operations: []
       };
       return parsedTx;
@@ -176,11 +183,15 @@ export async function apiGetAccountTransactions(
   const tokenTxns: IBlockScoutTokenTx[] = tokenTxnsRes.data.result;
 
   tokenTxns.forEach((tokenTx: IBlockScoutTokenTx) => {
-    const operation: ITxOperation = {
+    const asset: IAssetData = {
       symbol: tokenTx.tokenSymbol,
       name: tokenTx.tokenName,
       decimals: tokenTx.tokenDecimal,
-      contractAddress: tokenTx.contractAddress,
+      contractAddress: tokenTx.contractAddress
+    };
+
+    const operation: ITxOperation = {
+      asset,
       value: tokenTx.value,
       from: tokenTx.from,
       to: tokenTx.to,
@@ -197,6 +208,13 @@ export async function apiGetAccountTransactions(
       }
     }
     if (!matchingTx) {
+      const asset: IAssetData = {
+        symbol: "ETH",
+        name: "Ethereum",
+        decimals: "18",
+        contractAddress: ""
+      };
+
       const parsedTx: IParsedTx = {
         timeStamp: multiply(tokenTx.timeStamp, 100),
         hash: tokenTx.hash,
@@ -209,6 +227,7 @@ export async function apiGetAccountTransactions(
         value: tokenTx.value,
         input: tokenTx.input,
         error: false,
+        asset,
         operations: []
       };
       transactions.push(parsedTx);

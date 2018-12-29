@@ -8,45 +8,45 @@ import {
   handleSignificantDecimals
 } from "../helpers/bignumber";
 
-const StyledAssetRow = styled(Row)`
+const SAssetRow = styled(Row)`
   height: 80px;
 `;
 
-const StyledBalance = styled.View`
+const SBalance = styled.View`
   margin-top: 30px;
   margin-right: 11;
 `;
 
-const StyledBalanceText = styled.Text`
+const SBalanceText = styled.Text`
   color: #242836;
   line-height: 20px;
 `;
 
-const StyledSymbol = styled.Text`
+const SSymbol = styled.Text`
   color: #242836;
   letter-spacing: 1px;
   line-height: 20px;
 `;
 
-const StyledSymbolWrapper = styled.View`
+const SSymbolWrapper = styled.View`
   flex: 1;
   flex-direction: row;
   align-items: center;
 `;
 
 const AssetRow = (props: any) => (
-  <StyledAssetRow>
-    <StyledSymbolWrapper>
+  <SAssetRow>
+    <SSymbolWrapper>
       <AssetIcon asset={props.asset} />
-      <StyledSymbol>{props.asset.name}</StyledSymbol>
-    </StyledSymbolWrapper>
-    <StyledBalance>
-      <StyledBalanceText>{`${handleSignificantDecimals(
+      <SSymbol>{props.asset.name}</SSymbol>
+    </SSymbolWrapper>
+    <SBalance>
+      <SBalanceText>{`${handleSignificantDecimals(
         convertAmountFromRawNumber(props.asset.balance, props.asset.decimals),
         8
-      )} ${props.asset.symbol}`}</StyledBalanceText>
-    </StyledBalance>
-  </StyledAssetRow>
+      )} ${props.asset.symbol}`}</SBalanceText>
+    </SBalance>
+  </SAssetRow>
 );
 
 AssetRow.propTypes = {

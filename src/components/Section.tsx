@@ -2,14 +2,14 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledSection = styled.View`
+const SSection = styled.View`
   width: 100%;
   display: flex;
   margin-bottom: 6px;
 `;
 
-const Section = ({ children, ...props }) => (
-  <StyledSection {...props}>{children}</StyledSection>
+const Section = (props: any) => (
+  <SSection {...props}>{props.children}</SSection>
 );
 
 Section.propTypes = {
