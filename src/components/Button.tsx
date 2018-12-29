@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 
 const ButtonContainer = styled.TouchableHighlight`
   position: relative;
-  background-color: #00b371;
+  background-color: ${(props: any) => props.color};
   width: ${(props: any) => `${props.width}`};
   height: 35px;
-  border-radius: 8px;
+  border-radius: 6px;
   align-self: stretch;
   display: flex;
   justify-content: center;
@@ -25,7 +25,7 @@ const Label = styled.Text`
 const Button = (props: any) => (
   <ButtonContainer
     width={props.width}
-    underlayColor={"#00A367"}
+    color={props.color}
     outline={props.outline}
     onPress={props.onPress}
     {...props}
@@ -43,7 +43,8 @@ Button.propTypes = {
 
 Button.defaultProps = {
   outline: false,
-  width: "100%"
+  width: "100%",
+  color: "#3b99fc"
 };
 
 export default Button;

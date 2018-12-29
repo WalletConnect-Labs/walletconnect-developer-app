@@ -15,7 +15,7 @@ const ScrollViewContainer = (props: any) => {
 };
 
 ScrollViewContainer.propTypes = {
-  chilren: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   refreshing: PropTypes.bool,
   onRefresh: PropTypes.func
 };
