@@ -30,11 +30,11 @@ const AppNavigator = createBottomTabNavigator(
   {
     initialRouteName: "Wallet",
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal }) => {
+      tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
 
         let iconSource = null;
-        let iconSize = horizontal ? 25 : 20;
+
         switch (routeName) {
           case "Wallet":
             iconSource = focused
@@ -58,7 +58,7 @@ const AppNavigator = createBottomTabNavigator(
         return (
           <Image
             source={iconSource}
-            style={{ width: iconSize, height: iconSize }}
+            style={{ width: 25, height: 25, margin: 10 }}
           />
         );
       }
