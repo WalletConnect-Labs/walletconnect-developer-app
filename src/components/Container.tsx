@@ -6,7 +6,6 @@ const SContainer = styled.View`
   flex: 1;
   justify-content: ${(props: any) => (props.center ? "center" : "flex-start")};
   align-items: ${(props: any) => (props.center ? "center" : "flex-start")};
-  /* background-color: #fff; */
   padding: 0;
 `;
 

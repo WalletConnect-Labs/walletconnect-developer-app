@@ -64,8 +64,8 @@ const TransactionRow = (props: any) => {
         <SArrow
           source={
             incomingTx
-              ? require("../assets/arrow-in.png") // eslint-disable-line
-              : require("../assets/arrow-out.png") // eslint-disable-line
+              ? require("../assets/arrow-in.png")
+              : require("../assets/arrow-out.png")
           }
         />
 
