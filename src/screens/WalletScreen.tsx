@@ -65,9 +65,7 @@ class WalletScreen extends React.Component<any, any> {
             >
               <TouchableOpacity onPress={this.copyToClipboard}>
                 <Image
-                  source={
-                    require("../assets/clipboard.png") // eslint-disable-line
-                  }
+                  source={require("../assets/clipboard.png")}
                   style={{ width: 20, height: 20, margin: 5 }}
                 />
               </TouchableOpacity>

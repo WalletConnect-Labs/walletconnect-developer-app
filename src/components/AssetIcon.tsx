@@ -38,7 +38,7 @@ const AssetIcon = (props: any) => (
       source={{ uri: getIconUrl(props.asset.contractAddress) }}
       style={styles.circleIcon}
       isShowActivity={false}
-      placeholderSource={require("../assets/default-token.png")} // eslint-disable-line
+      placeholderSource={require("../assets/default-token.png")}
       customImagePlaceholderDefaultStyle={styles.circleIcon}
       loadingStyle={styles.circleIcon}
       borderRadius={15}

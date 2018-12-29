@@ -39,17 +39,17 @@ const AppNavigator = createBottomTabNavigator(
           case "Wallet":
             iconSource = focused
               ? require("./assets/wallet-icon-blue.png")
-              : require("./assets/wallet-icon.png"); // eslint-disable-line
+              : require("./assets/wallet-icon.png");
             break;
           case "Scan":
             iconSource = focused
               ? require("./assets/scan-icon-blue.png")
-              : require("./assets/scan-icon.png"); // eslint-disable-line
+              : require("./assets/scan-icon.png");
             break;
           case "Settings":
             iconSource = focused
               ? require("./assets/settings-icon-blue.png")
-              : require("./assets/settings-icon.png"); // eslint-disable-line
+              : require("./assets/settings-icon.png");
             break;
           default:
             break;
