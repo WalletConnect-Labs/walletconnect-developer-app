@@ -5,32 +5,19 @@ import {
   createBottomTabNavigator,
   createAppContainer
 } from "react-navigation";
-import WalletScreen from "./screens/WalletScreen";
-import ScanScreen from "./screens/ScanScreen";
-import SettingsScreen from "./screens/SettingsScreen";
-import SessionRequestModal from "./modals/SessionRequestModal";
-import CallRequestModal from "./modals/CallRequestModal";
-
-const WalletStack = createStackNavigator({
-  Wallet: WalletScreen
-});
-
-const ScanStack = createStackNavigator({
-  Scan: ScanScreen
-});
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
-});
+import AccountStack from "./screens/Account";
+import ScanStack from "./screens/Scan";
+import SettingsStack from "./screens/Settings";
+import ModalStack from "./screens/Modal";
 
 const MainTabNavigator = createBottomTabNavigator(
   {
-    Wallet: WalletStack,
+    Account: AccountStack,
     Scan: ScanStack,
     Settings: SettingsStack
   },
   {
-    initialRouteName: "Wallet",
+    initialRouteName: "Account",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
@@ -38,7 +25,7 @@ const MainTabNavigator = createBottomTabNavigator(
         let iconSource = null;
 
         switch (routeName) {
-          case "Wallet":
+          case "Account":
             iconSource = focused
               ? require("./assets/wallet-icon-blue.png")
               : require("./assets/wallet-icon.png");
@@ -71,11 +58,6 @@ const MainTabNavigator = createBottomTabNavigator(
     }
   }
 );
-
-const ModalStack = createStackNavigator({
-  SessionRequest: SessionRequestModal,
-  CallRequest: CallRequestModal
-});
 
 const AppNavigator = createStackNavigator(
   {

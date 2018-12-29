@@ -722,6 +722,14 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.8.tgz#8ae4e0ea205fe95c3901a5a1df7f66495e3a56ce"
   integrity sha512-3AQoUxQcQtLHsK25wtTWIoIpgYjH3vSDroZOUr7PpCHw/jLY1RB9z9E8dBT/OSmwStVgkRNvdh+ZHNiomRieaw==
 
+"@types/react-native-settings-list@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@types/react-native-settings-list/-/react-native-settings-list-1.8.1.tgz#69878465bf71a94c66dd1837ee763c0340cdf053"
+  integrity sha512-/M8XPcgysUhOj3+WOF38nxgnmCcKy6spY8PYFfUJTBLyCK0PY3UAPiZuNkUN/kMAbqPxmTPvomH2sm/9sg1NZg==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native@*":
   version "0.57.22"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.22.tgz#139907ee6cf9512c8e7931dc268cc83d2a51c924"
@@ -2610,7 +2618,7 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
-create-react-class@^15.6.3:
+create-react-class@^15.6.2, create-react-class@^15.6.3:
   version "15.6.3"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
   integrity sha512-M+/3Q6E6DLO6Yx3OwrWjwHBnvfXXYA7W+dFjt/ZDBemHO1DDZhsalX/NUtnTYclN6GfnBDRh4qRHjcDHmlJBJg==
@@ -6742,6 +6750,14 @@ react-native-scripts-ts@1.15.0:
     qrcode-terminal "^0.11.0"
     rimraf "^2.6.1"
     xdl "48.1.4"
+
+react-native-settings-list@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-settings-list/-/react-native-settings-list-1.8.0.tgz#89089546e84e6fdf3b9e421fe870f0c2626868da"
+  integrity sha1-iQiVRuhOb987nkIf6HDwwmJoaNo=
+  dependencies:
+    create-react-class "^15.6.2"
+    prop-types "^15.5.10"
 
 react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   version "1.3.1"

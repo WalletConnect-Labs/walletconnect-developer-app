@@ -17,13 +17,6 @@ const ACCOUNT_GET_TRANSACTIONS_SUCCESS =
 const ACCOUNT_GET_TRANSACTIONS_FAILURE =
   "account/ACCOUNT_GET_TRANSACTIONS_FAILURE";
 
-const ACCOUNT_GET_TRANSACTION_DETAILS_REQUEST =
-  "account/ACCOUNT_GET_TRANSACTION_DETAILS_REQUEST";
-const ACCOUNT_GET_TRANSACTION_DETAILS_SUCCESS =
-  "account/ACCOUNT_GET_TRANSACTION_DETAILS_SUCCESS";
-const ACCOUNT_GET_TRANSACTION_DETAILS_FAILURE =
-  "account/ACCOUNT_GET_TRANSACTION_DETAILS_FAILURE";
-
 // -- Actions --------------------------------------------------------------- //
 
 export const accountUpdateAddress = (address: string) => (dispatch: any) => {
@@ -117,23 +110,6 @@ export default (state = INITIAL_STATE, action: any) => {
         ...state,
         loading: false
       };
-    case ACCOUNT_GET_TRANSACTION_DETAILS_REQUEST:
-      return {
-        ...state,
-        loading: true
-      };
-    case ACCOUNT_GET_TRANSACTION_DETAILS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        txDetails: action.payload
-      };
-    case ACCOUNT_GET_TRANSACTION_DETAILS_FAILURE:
-      return {
-        ...state,
-        loading: false
-      };
-
     case ACCOUNT_GET_TRANSACTIONS_REQUEST:
       return {
         ...state,
