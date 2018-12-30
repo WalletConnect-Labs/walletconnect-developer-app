@@ -14,15 +14,20 @@ class ScrollViewContainer extends React.Component<any, any> {
     }
   }
   render() {
-    const refreshControl = (
-      <RefreshControl
-        refreshing={!this.state.firstLoad && this.props.refreshing}
-        onRefresh={this.props.onRefresh}
-      />
-    );
+    const { firstLoad } = this.state;
+    const { refreshing, onRefresh, children } = this.props;
+    let refreshControl;
+    if (typeof refreshing !== "undefined" && onRefresh) {
+      refreshControl = (
+        <RefreshControl
+          refreshing={!firstLoad && refreshing}
+          onRefresh={onRefresh}
+        />
+      );
+    }
     return (
       <ScrollView refreshControl={refreshControl}>
-        <Container>{this.props.children}</Container>
+        <Container>{children}</Container>
       </ScrollView>
     );
   }

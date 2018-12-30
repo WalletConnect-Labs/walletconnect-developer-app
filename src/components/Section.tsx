@@ -5,7 +5,6 @@ import styled from "styled-components";
 const SSection = styled.View`
   width: 100%;
   display: flex;
-  margin-bottom: 6px;
 `;
 
 const Section = (props: any) => (

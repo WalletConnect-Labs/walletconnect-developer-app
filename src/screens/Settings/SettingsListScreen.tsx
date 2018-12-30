@@ -1,10 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Alert, View, Image } from "react-native";
+import { View, Image } from "react-native";
 import SettingsList from "react-native-settings-list";
 import { ellipseAddress, getChainData } from "../../helpers/utilities";
 
-class SettingsScreen extends React.Component<any, any> {
+class SettingsListScreen extends React.Component<any, any> {
   static navigationOptions = {
     title: "Settings",
     headerTitle: "Settings"
@@ -27,7 +27,8 @@ class SettingsScreen extends React.Component<any, any> {
           }
           title="Account"
           titleInfo={ellipseAddress(this.props.address)}
-          onPress={() => Alert.alert("Route to Account Settings Page")}
+          titleInfoStyle={{ color: "#777" }}
+          onPress={() => this.props.navigation.navigate("SettingsAccounts")}
         />
         <SettingsList.Item
           icon={
@@ -44,7 +45,8 @@ class SettingsScreen extends React.Component<any, any> {
           }
           title="Chain"
           titleInfo={getChainData(this.props.chainId).name}
-          onPress={() => Alert.alert("Route to Chain Settings Page")}
+          titleInfoStyle={{ color: "#777" }}
+          onPress={() => this.props.navigation.navigate("SettingsChains")}
         />
       </SettingsList>
     </View>
@@ -59,4 +61,4 @@ const reduxProps = (reduxState: any) => ({
 export default connect(
   reduxProps,
   null
-)(SettingsScreen);
+)(SettingsListScreen);

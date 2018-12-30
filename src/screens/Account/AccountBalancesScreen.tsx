@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   Alert,
   Image,
+  Text,
   Clipboard,
   View,
   TouchableOpacity,
@@ -13,10 +14,8 @@ import { IAssetData } from "../../helpers/types";
 import ScrollViewContainer from "../../components/ScrollViewContainer";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
-import Separator from "../../components/Separator";
-import Text from "../../components/Text";
-import Label from "../../components/Label";
 import AssetRow from "../../components/AssetRow";
+import AccountHeader from "../../components/AccountHeader";
 
 class AccountBalancesScreen extends React.Component<any, any> {
   static navigationOptions = (props: any) => {
@@ -41,10 +40,6 @@ class AccountBalancesScreen extends React.Component<any, any> {
     firstLoad: true
   };
 
-  componentDidMount() {
-    this.getBalances();
-  }
-
   componentDidUpdate(prevProps: any, prevState: any) {
     if (prevState.firstLoad) {
       if (prevProps.loading && !this.props.loading) {
@@ -63,42 +58,17 @@ class AccountBalancesScreen extends React.Component<any, any> {
     Alert.alert("Copied", "Address copied to clipboard");
   };
   render() {
-    const { loading, address, assets } = this.props;
-    const firstLoad = loading && this.state.firstLoad;
+    const { initiating, loading, address, assets, chainId } = this.props;
+    const firstLoad = (initiating || loading) && this.state.firstLoad;
     return (
       <ScrollViewContainer refreshing={loading} onRefresh={this.getBalances}>
+        <AccountHeader address={address} chainId={chainId} />
         <Card>
-          <View style={{ flexDirection: "row", height: 50 }}>
-            <Section style={{ width: "auto", height: 50, flex: 10 }}>
-              <Label>{"Account Address"}</Label>
-              <Text style={{ fontSize: 12, fontFamily: "Menlo-Regular" }}>
-                {address}
-              </Text>
-            </Section>
-            <Section
-              style={{
-                width: "auto",
-                height: 50,
-                flex: 1
-              }}
-            >
-              <TouchableOpacity onPress={this.copyToClipboard}>
-                <Image
-                  source={require("../../assets/clipboard-black.png")}
-                  style={{ width: 20, height: 20, margin: 5 }}
-                />
-              </TouchableOpacity>
-            </Section>
-          </View>
-
           <Section>
             {!firstLoad ? (
               !!assets.length ? (
                 assets.map((asset: IAssetData, index: number) => (
-                  <View key={index}>
-                    <Separator />
-                    <AssetRow asset={asset} />
-                  </View>
+                  <AssetRow key={index} asset={asset} />
                 ))
               ) : (
                 <View
@@ -131,9 +101,11 @@ class AccountBalancesScreen extends React.Component<any, any> {
 }
 
 const reduxProps = (reduxState: any) => ({
+  initiating: reduxState.account.initiating,
   loading: reduxState.account.loading,
   address: reduxState.account.address,
-  assets: reduxState.account.assets
+  assets: reduxState.account.assets,
+  chainId: reduxState.account.chainId
 });
 
 export default connect(

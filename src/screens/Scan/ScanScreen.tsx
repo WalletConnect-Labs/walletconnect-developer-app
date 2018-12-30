@@ -17,12 +17,13 @@ const SText = styled(Text)`
 `;
 
 class ScanScreen extends React.Component<any, any> {
-  qrCodeScanner: any;
+  scanner: any;
 
   static navigationOptions = {
     title: "Scan",
     headerTitle: "Scan"
   };
+
   onRead = async (event: any) => {
     const uri = event.data;
 
@@ -31,7 +32,7 @@ class ScanScreen extends React.Component<any, any> {
     }
 
     setTimeout(() => {
-      this.qrCodeScanner.reactivate();
+      this.scanner.reactivate();
     }, 1000);
   };
 
@@ -51,7 +52,7 @@ class ScanScreen extends React.Component<any, any> {
         bottomViewStyle={{ flex: 0, height: 0 }}
         style={{ flex: 1 }}
         ref={(c: any) => {
-          this.qrCodeScanner = c;
+          this.scanner = c;
         }}
         onRead={this.onRead}
       />

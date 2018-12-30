@@ -6,7 +6,6 @@ import ImageLoad from "react-native-image-placeholder";
 const size = 40;
 
 const SCircle = styled.View`
-  margin: 0 15px;
   height: ${size}px;
   width: ${size}px;
   border-radius: ${size / 2}px;

@@ -6,7 +6,7 @@ const SCard = styled.View`
   width: 100%;
   background-color: rgb(255, 255, 255);
   margin: 0px;
-  padding: 15px;
+  /* padding: 15px; */
   border-radius: 0px;
 `;
 

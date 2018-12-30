@@ -1,6 +1,17 @@
 import { apiGetAccountAssets, apiGetAccountTransactions } from "../helpers/api";
+import {
+  initWallet,
+  switchActiveAccount,
+  getAllAddresses
+} from "../helpers/wallet";
 
 // -- Constants ------------------------------------------------------------- //
+
+const ACCOUNT_INIT_REQUEST = "account/ACCOUNT_INIT_REQUEST";
+const ACCOUNT_INIT_SUCCESS = "account/ACCOUNT_INIT_SUCCESS";
+const ACCOUNT_INIT_FAILURE = "account/ACCOUNT_INIT_FAILURE";
+
+const ACCOUNT_GET_ALL_ADDRESSES = "account/ACCOUNT_GET_ALL_ADDRESSES";
 
 const ACCOUNT_UPDATE_ADDRESS = "account/ACCOUNT_UPDATE_ADDRESS";
 
@@ -19,7 +30,24 @@ const ACCOUNT_GET_TRANSACTIONS_FAILURE =
 
 // -- Actions --------------------------------------------------------------- //
 
-export const accountUpdateAddress = (address: string) => (dispatch: any) => {
+export const accountInit = () => async (dispatch: any) => {
+  dispatch({ type: ACCOUNT_INIT_REQUEST });
+  try {
+    const address = await initWallet();
+    const accounts = [address];
+    console.log("accountInit() accounts", accounts);
+
+    dispatch({ type: ACCOUNT_INIT_SUCCESS, payload: accounts });
+    dispatch(accountGetAssets());
+    dispatch(accountGetAllAddresses());
+  } catch (error) {
+    console.error(error);
+    dispatch({ type: ACCOUNT_INIT_FAILURE });
+  }
+};
+
+export const accountUpdateAddress = (index: number) => (dispatch: any) => {
+  const address = switchActiveAccount(index);
   dispatch({ type: ACCOUNT_UPDATE_ADDRESS, payload: address });
   dispatch(accountGetAssets());
 };
@@ -37,6 +65,8 @@ export const accountUpdateChainId = (chainId: number) => (
 
 export const accountGetAssets = () => async (dispatch: any, getState: any) => {
   const { address, chainId } = getState().account;
+  console.log("accountGetAssets() address", address);
+  console.log("accountGetAssets() chainId", chainId);
   dispatch({ type: ACCOUNT_GET_ASSETS_REQUEST });
   try {
     const assets = await apiGetAccountAssets(address, chainId);
@@ -64,11 +94,18 @@ export const accountGetTransactions = () => async (
   }
 };
 
+export const accountGetAllAddresses = () => (dispatch: any) => {
+  const accounts = getAllAddresses();
+  dispatch({ type: ACCOUNT_GET_ALL_ADDRESSES, payload: accounts });
+};
+
 // -- Reducer --------------------------------------------------------------- //
 const INITIAL_STATE = {
+  initiating: false,
   loading: false,
   chainId: 1,
-  address: "0x9b7b2B4f7a391b6F14A81221AE0920A9735B67Fb",
+  accounts: [],
+  address: "",
   assets: [
     {
       symbol: "ETH",
@@ -83,6 +120,24 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
+    case ACCOUNT_INIT_REQUEST:
+      return {
+        ...state,
+        initiating: true
+      };
+
+    case ACCOUNT_INIT_SUCCESS:
+      return {
+        ...state,
+        initiating: false,
+        accounts: action.payload,
+        address: action.payload[0]
+      };
+    case ACCOUNT_INIT_FAILURE:
+      return {
+        ...state,
+        initiating: false
+      };
     case ACCOUNT_UPDATE_ADDRESS:
       return {
         ...state,
@@ -124,6 +179,11 @@ export default (state = INITIAL_STATE, action: any) => {
       return {
         ...state,
         loading: false
+      };
+    case ACCOUNT_GET_ALL_ADDRESSES:
+      return {
+        ...state,
+        accounts: action.payload
       };
     default:
       return state;

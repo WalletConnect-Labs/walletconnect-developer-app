@@ -9,12 +9,12 @@ import {
 } from "../helpers/bignumber";
 
 const SAssetRow = styled(Row)`
-  height: 80px;
+  height: 70px;
 `;
 
-const SBalance = styled.View`
-  margin-top: 30px;
-  margin-right: 11;
+const SBalanceWrapper = styled.View`
+  align-items: center;
+  justify-content: center;
 `;
 
 const SBalanceText = styled.Text`
@@ -22,13 +22,14 @@ const SBalanceText = styled.Text`
   line-height: 20px;
 `;
 
-const SSymbol = styled.Text`
+const SAssetName = styled.Text`
   color: #242836;
   letter-spacing: 1px;
+  margin-left: 15px;
   line-height: 20px;
 `;
 
-const SSymbolWrapper = styled.View`
+const SAssetNameWrapper = styled.View`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -36,16 +37,16 @@ const SSymbolWrapper = styled.View`
 
 const AssetRow = (props: any) => (
   <SAssetRow>
-    <SSymbolWrapper>
+    <SAssetNameWrapper>
       <AssetIcon asset={props.asset} />
-      <SSymbol>{props.asset.name}</SSymbol>
-    </SSymbolWrapper>
-    <SBalance>
+      <SAssetName>{props.asset.name}</SAssetName>
+    </SAssetNameWrapper>
+    <SBalanceWrapper>
       <SBalanceText>{`${handleSignificantDecimals(
         convertAmountFromRawNumber(props.asset.balance, props.asset.decimals),
         8
       )} ${props.asset.symbol}`}</SBalanceText>
-    </SBalance>
+    </SBalanceWrapper>
   </SAssetRow>
 );
 

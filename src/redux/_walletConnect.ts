@@ -4,8 +4,17 @@ import {
   IWalletConnectReduxState,
   IWalletConnectCallRequest
 } from "../helpers/types";
+import {
+  asyncStorageSaveSession,
+  asyncStorageLoadSessions,
+  asyncStorageDeleteSession
+} from "../helpers/asyncStorage";
 
 // -- Constants ------------------------------------------------------------- //
+
+const WALLETCONNECT_INIT_REQUEST = "walletConnect/WALLETCONNECT_INIT_REQUEST";
+const WALLETCONNECT_INIT_SUCCESS = "walletConnect/WALLETCONNECT_INIT_SUCCESS";
+const WALLETCONNECT_INIT_FAILURE = "walletConnect/WALLETCONNECT_INIT_FAILURE";
 
 const WALLETCONNECT_SESSION_REQUEST =
   "walletConnect/WALLETCONNECT_SESSION_REQUEST";
@@ -34,6 +43,20 @@ const WalletMeta = {
   icons: ["https://walletconnect.org/walletconnect-logo.png"],
   name: "WalletConnect",
   ssl: true
+};
+
+export const walletConnectInit = () => async (dispatch: any) => {
+  dispatch({ type: WALLETCONNECT_INIT_REQUEST });
+  try {
+    const sessions = await asyncStorageLoadSessions();
+    const activeConnectors = Object.values(sessions).map(
+      session => new WalletConnect({ session, clientMeta: WalletMeta })
+    );
+    dispatch({ type: WALLETCONNECT_INIT_SUCCESS, payload: activeConnectors });
+  } catch (error) {
+    console.error();
+    dispatch({ type: WALLETCONNECT_INIT_FAILURE });
+  }
 };
 
 export const walletConnectOnSessionRequest = (uri: string) => (
@@ -74,6 +97,7 @@ export const walletConnectApproveSession = (
         accounts,
         chainId
       });
+      asyncStorageSaveSession(walletConnector.session);
       updatedActiveConnectors.push(walletConnector);
     } else {
       updatedPendingConnectors.push(walletConnector);
@@ -115,6 +139,7 @@ export const walletConnectKillSession = (peerId: string) => (
     (activeConnector: WalletConnect) => {
       if (activeConnector.peerId === peerId) {
         activeConnector.killSession();
+        asyncStorageDeleteSession(activeConnector.session);
         return false;
       }
       return true;
@@ -162,7 +187,13 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
       throw error;
     }
     const updatedActiveConnectors = getState().walletConnect.activeConnectors.filter(
-      (activeConnector: WalletConnect) => activeConnector.peerId !== peerId
+      (activeConnector: WalletConnect) => {
+        if (activeConnector.peerId === peerId) {
+          asyncStorageDeleteSession(activeConnector.session);
+          return false;
+        }
+        return true;
+      }
     );
     dispatch({
       action: WALLETCONNECT_SESSION_DISCONNECTED,
@@ -215,6 +246,7 @@ export const walletConnectRejectRequest = (
 
 // -- Reducer --------------------------------------------------------------- //
 const INITIAL_STATE: IWalletConnectReduxState = {
+  loading: false,
   activeConnectors: [],
   pendingConnectors: [],
   callRequests: []
@@ -225,6 +257,22 @@ export default (
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
+    case WALLETCONNECT_INIT_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case WALLETCONNECT_INIT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        activeConnectors: action.payload
+      };
+    case WALLETCONNECT_INIT_FAILURE:
+      return {
+        ...state,
+        loading: false
+      };
     case WALLETCONNECT_SESSION_REQUEST:
     case WALLETCONNECT_SESSION_REJECTION:
       return {

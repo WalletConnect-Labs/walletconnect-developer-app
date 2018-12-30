@@ -2,7 +2,6 @@ import * as React from "react";
 import { YellowBox } from "react-native";
 import { Provider } from "react-redux";
 import App from "./App";
-import { setTopLevelNavigator } from "./navigation";
 import store from "./redux/store";
 
 YellowBox.ignoreWarnings([
@@ -12,6 +11,6 @@ YellowBox.ignoreWarnings([
 
 export default () => (
   <Provider store={store}>
-    <App ref={navigatorRef => setTopLevelNavigator(navigatorRef)} />
+    <App />
   </Provider>
 );

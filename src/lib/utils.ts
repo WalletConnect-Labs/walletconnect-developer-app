@@ -114,7 +114,11 @@ export function uuid(): string {
   return result;
 }
 
-export function getMeta(): IClientMeta {
+export function getMeta(): IClientMeta | null {
+  if (typeof window !== "undefined" && typeof window.location !== "undefined") {
+    return null;
+  }
+
   function getIcons(): string[] {
     const links: HTMLCollectionOf<
       HTMLLinkElement

@@ -1,4 +1,5 @@
 import WalletConnect from "../lib";
+import { IJsonRpcRequest } from "../lib/types";
 
 export interface IAssetData {
   symbol: string;
@@ -17,29 +18,13 @@ export interface IChainData {
   network_id: number;
 }
 
-export interface ITxData {
-  from: string;
-  to: string;
-  nonce: string;
-  gasPrice: string;
-  gasLimit: string;
-  value: string;
-  data: string;
-}
-
-export interface IJsonRpcRequest {
-  id: number;
-  jsonrpc: string;
-  method: string;
-  params: any[];
-}
-
 export interface IWalletConnectCallRequest {
   walletConnector: WalletConnect[];
   payload: IJsonRpcRequest;
 }
 
 export interface IWalletConnectReduxState {
+  loading: boolean;
   activeConnectors: WalletConnect[];
   pendingConnectors: WalletConnect[];
   callRequests: IWalletConnectCallRequest[];

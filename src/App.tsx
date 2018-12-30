@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Image } from "react-native";
+import { connect } from "react-redux";
 import {
   createStackNavigator,
   createBottomTabNavigator,
   createAppContainer
 } from "react-navigation";
+import { setTopLevelNavigator } from "./navigation";
+import { walletConnectInit } from "./redux/_walletConnect";
+import { accountInit } from "./redux/_account";
 import AccountStack from "./screens/Account";
 import ScanStack from "./screens/Scan";
 import SettingsStack from "./screens/Settings";
@@ -73,4 +77,17 @@ const AppNavigator = createStackNavigator(
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default AppContainer;
+class App extends React.Component<any, any> {
+  componentDidMount() {
+    this.props.walletConnectInit();
+    this.props.accountInit();
+  }
+  render = () => (
+    <AppContainer ref={navigatorRef => setTopLevelNavigator(navigatorRef)} />
+  );
+}
+
+export default connect(
+  null,
+  { walletConnectInit, accountInit }
+)(App);
