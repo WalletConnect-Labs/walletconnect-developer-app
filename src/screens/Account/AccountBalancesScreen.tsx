@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Alert, Image, Clipboard, View, TouchableOpacity } from "react-native";
+import {
+  Alert,
+  Image,
+  Clipboard,
+  View,
+  TouchableOpacity,
+  ActivityIndicator
+} from "react-native";
 import { connect } from "react-redux";
 import { accountGetAssets } from "../../redux/_account";
 import { IAssetData } from "../../helpers/types";
@@ -15,49 +22,49 @@ class AccountBalancesScreen extends React.Component<any, any> {
   static navigationOptions = (props: any) => {
     return {
       title: "Account",
-      headerTitle: "Account",
-      headerRight: (
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("AccountTransactions")}
-        >
-          <Image
-            source={require("../../assets/transactions-black.png")}
-            style={{ width: 20, height: 20, margin: 5, marginRight: 20 }}
-          />
-        </TouchableOpacity>
-      )
+      headerTitle: "Account"
+      // TODO: FIX TRANSACTIONS SCREEN FIRST
+      // headerRight: (
+      //   <TouchableOpacity
+      //     onPress={() => props.navigation.navigate("AccountTransactions")}
+      //   >
+      //     <Image
+      //       source={require("../../assets/transactions-black.png")}
+      //       style={{ width: 20, height: 20, margin: 5, marginRight: 20 }}
+      //     />
+      //   </TouchableOpacity>
+      // )
     };
+  };
+
+  state = {
+    firstLoad: true
   };
 
   componentDidMount() {
     this.getBalances();
   }
-  getBalances() {
-    this.props.accountGetAssets();
+
+  componentDidUpdate(prevProps: any, prevState: any) {
+    if (prevState.firstLoad) {
+      if (prevProps.loading && !this.props.loading) {
+        this.setState({ firstLoad: false });
+      }
+    }
   }
+
+  getBalances = () => {
+    if (!this.props.loading) {
+      this.props.accountGetAssets();
+    }
+  };
   copyToClipboard = () => {
     Clipboard.setString(this.props.address);
     Alert.alert("Copied", "Address copied to clipboard");
   };
-  renderAssets = () => {
-    const { assets } = this.props;
-    if (!assets.length) {
-      return null;
-    }
-    return (
-      <Section>
-        {assets.map((asset: IAssetData, index: number) => (
-          <View key={index}>
-            <Separator />
-            <AssetRow asset={asset} />
-          </View>
-        ))}
-      </Section>
-    );
-  };
-
   render() {
-    const { loading, address } = this.props;
+    const { loading, address, assets } = this.props;
+    const firstLoad = loading && this.state.firstLoad;
     return (
       <ScrollViewContainer refreshing={loading} onRefresh={this.getBalances}>
         <Card>
@@ -84,7 +91,39 @@ class AccountBalancesScreen extends React.Component<any, any> {
             </Section>
           </View>
 
-          {this.renderAssets()}
+          <Section>
+            {!firstLoad ? (
+              !!assets.length ? (
+                assets.map((asset: IAssetData, index: number) => (
+                  <View key={index}>
+                    <Separator />
+                    <AssetRow asset={asset} />
+                  </View>
+                ))
+              ) : (
+                <View
+                  style={{
+                    height: 200,
+                    textAlign: "center",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  <Text>{"No Balances Found"}</Text>
+                </View>
+              )
+            ) : (
+              <View
+                style={{
+                  height: 200,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <ActivityIndicator size="large" color="gray" />
+              </View>
+            )}
+          </Section>
         </Card>
       </ScrollViewContainer>
     );
