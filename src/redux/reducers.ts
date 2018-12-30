@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import account from "./_account";
-// import callRequests from "./_callRequests";
+import walletConnect from "./_walletConnect";
 
 export default combineReducers({
-  account
-  // callRequests
+  account,
+  walletConnect
 });

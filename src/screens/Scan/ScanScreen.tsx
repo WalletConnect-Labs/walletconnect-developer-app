@@ -1,8 +1,10 @@
 import * as React from "react";
 import { View, Text } from "react-native";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import Container from "../../components/Container";
+import { walletConnectOnSessionRequest } from "../../redux/_walletConnect";
 
 const SText = styled(Text)`
   flex-wrap: wrap;
@@ -23,8 +25,9 @@ class ScanScreen extends React.Component<any, any> {
   };
   onRead = async (event: any) => {
     const uri = event.data;
+
     if (uri && typeof uri === "string") {
-      console.log("uri", uri);
+      this.props.walletConnectOnSessionRequest(uri);
     }
 
     setTimeout(() => {
@@ -56,4 +59,7 @@ class ScanScreen extends React.Component<any, any> {
   );
 }
 
-export default ScanScreen;
+export default connect(
+  null,
+  { walletConnectOnSessionRequest }
+)(ScanScreen);

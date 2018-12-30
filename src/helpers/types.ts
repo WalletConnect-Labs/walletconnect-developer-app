@@ -1,3 +1,5 @@
+import WalletConnect from "../lib";
+
 export interface IAssetData {
   symbol: string;
   name: string;
@@ -23,6 +25,24 @@ export interface ITxData {
   gasLimit: string;
   value: string;
   data: string;
+}
+
+export interface IJsonRpcRequest {
+  id: number;
+  jsonrpc: string;
+  method: string;
+  params: any[];
+}
+
+export interface IWalletConnectCallRequest {
+  walletConnector: WalletConnect[];
+  payload: IJsonRpcRequest;
+}
+
+export interface IWalletConnectReduxState {
+  activeConnectors: WalletConnect[];
+  pendingConnectors: WalletConnect[];
+  callRequests: IWalletConnectCallRequest[];
 }
 
 export interface IBlockScoutTx {
@@ -89,7 +109,7 @@ export interface ITxOperation {
   value: string;
   from: string;
   to: string;
-  functiomName: string;
+  functionName: string;
 }
 
 export interface IGasPricesResponse {
