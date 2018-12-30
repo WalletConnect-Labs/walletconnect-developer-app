@@ -9,6 +9,7 @@ import {
 } from "./types";
 import { convertStringToNumber, divide, multiply } from "./bignumber";
 import { getChainData } from "./utilities";
+import functionNames from "./functionNames";
 
 const api: AxiosInstance = axios.create({
   baseURL: "https://blockscout.com/",
@@ -26,7 +27,6 @@ export async function apiGetAccountBalance(address: string, chainId: number) {
   const module = "account";
   const action = "balance";
   const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
-  console.log(`GET ${url}`);
   const result = await api.get(url);
   return result;
 }
@@ -38,7 +38,6 @@ export async function apiGetAccountTokenList(address: string, chainId: number) {
   const module = "account";
   const action = "tokenlist";
   const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
-  console.log(`GET ${url}`);
   const result = await api.get(url);
   return result;
 }
@@ -54,7 +53,6 @@ export async function apiGetAccountTokenBalance(
   const module = "account";
   const action = "tokenbalance";
   const url = `/${chain}/${network}/api?module=${module}&action=${action}&contractaddress=${contractAddress}&address=${address}`;
-  console.log(`GET ${url}`);
   const result = await api.get(url);
   return result;
 }
@@ -127,7 +125,6 @@ export async function apiGetAccountTxList(address: string, chainId: number) {
   const module = "account";
   const action = "txlist";
   const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
-  console.log(`GET ${url}`);
   const result = await api.get(url);
   return result;
 }
@@ -139,7 +136,6 @@ export async function apiGetAccountTokenTx(address: string, chainId: number) {
   const module = "account";
   const action = "tokentx";
   const url = `/${chain}/${network}/api?module=${module}&action=${action}&address=${address}`;
-  console.log(`GET ${url}`);
   const result = await api.get(url);
   return result;
 }
@@ -151,7 +147,7 @@ export async function apiGetAccountTransactions(
   const txListRes = await apiGetAccountTxList(address, chainId);
   const txList: IBlockScoutTx[] = txListRes.data.result;
 
-  let transactions: IParsedTx[] = txList.map(
+  const transactions: IParsedTx[] = txList.map(
     (tx: IBlockScoutTx): IParsedTx => {
       const asset: IAssetData = {
         symbol: "ETH",
@@ -190,17 +186,19 @@ export async function apiGetAccountTransactions(
       contractAddress: tokenTx.contractAddress
     };
 
+    const functionHash = tokenTx.input.substring(0, 10);
+
     const operation: ITxOperation = {
       asset,
       value: tokenTx.value,
       from: tokenTx.from,
       to: tokenTx.to,
-      functiomName: tokenTx.input.substring(0, 10)
+      functionName: functionNames[functionHash] || functionHash
     };
 
     let matchingTx = false;
 
-    for (let tx of transactions) {
+    for (const tx of transactions) {
       if (tokenTx.hash.toLowerCase() === tx.hash.toLowerCase()) {
         tx.operations.push(operation);
         matchingTx = true;
