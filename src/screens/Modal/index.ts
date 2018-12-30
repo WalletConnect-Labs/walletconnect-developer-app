@@ -1,11 +1,11 @@
 import { createStackNavigator } from "react-navigation";
 
-import SessionRequestModal from "./SessionRequestModal";
-import CallRequestModal from "./CallRequestModal";
+import ModalSessionRequest from "./ModalSessionRequest";
+import ModalCallRequest from "./ModalCallRequest";
 
 const ModalStack = createStackNavigator({
-  SessionRequest: SessionRequestModal,
-  CallRequest: CallRequestModal
+  SessionRequest: ModalSessionRequest,
+  CallRequest: ModalCallRequest
 });
 
 export default ModalStack;
