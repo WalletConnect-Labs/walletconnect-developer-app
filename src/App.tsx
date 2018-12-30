@@ -79,7 +79,7 @@ const AppContainer = createAppContainer(AppNavigator);
 
 class App extends React.Component<any, any> {
   componentDidMount() {
-    this.props.walletConnectInit();
+    // this.props.walletConnectInit();
     this.props.accountInit();
   }
   render = () => (

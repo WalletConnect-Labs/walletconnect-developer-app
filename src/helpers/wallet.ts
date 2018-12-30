@@ -1,5 +1,4 @@
 import * as ethers from "ethers";
-import { Alert } from "react-native";
 import { keychainSave, keychainLoad } from "./keychain";
 
 const standardPath = "m/44'/60'/0'/0";
@@ -50,7 +49,6 @@ export async function initWallet() {
 }
 
 export async function createWallet() {
-  Alert.alert("Create Wallet", "Wallet is being created");
   const mnemonic = generateMnemonic();
   const path = generatePath();
   const account = ethers.Wallet.fromMnemonic(mnemonic, path);
@@ -60,7 +58,6 @@ export async function createWallet() {
 }
 
 export async function loadWallet() {
-  Alert.alert("Load Wallet", "Wallet is being loaded");
   const mnemonic = await loadMnemonic();
   if (mnemonic) {
     const path = generatePath();
