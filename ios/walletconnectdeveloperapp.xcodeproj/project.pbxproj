@@ -1262,6 +1262,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.walletconnect.developerapp;
 				PRODUCT_NAME = walletconnectdeveloperapp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1287,6 +1288,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.walletconnect.developerapp;
 				PRODUCT_NAME = walletconnectdeveloperapp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
