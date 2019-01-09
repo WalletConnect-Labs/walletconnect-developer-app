@@ -10,10 +10,12 @@
     "react-native": "~0.55.2",
     "react-native-blockies": "^1.0.2",
     "react-native-camera": "^1.6.4",
+    "react-native-crypto": "^2.1.2",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-image-placeholder": "^1.0.14",
     "react-native-keychain": "^3.0.0",
     "react-native-qrcode-scanner": "^1.1.0",
+    "react-native-randombytes": "^3.5.1",
     "react-native-settings-list": "^1.8.0",
     "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
@@ -26,7 +28,8 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "rn-nodeify --install \"crypto\" --hack"
   },
   "devDependencies": {
     "@types/bignumber.js": "^5.0.0",
@@ -45,6 +48,7 @@
     "react-native-scripts-ts": "1.15.0",
     "react-native-typescript-transformer": "^1.2.3",
     "react-test-renderer": "16.3.1",
+    "rn-nodeify": "^10.0.1",
     "ts-jest": "^22.4.6",
     "tslib": "^1.9.1",
     "typescript": "^2.8.3"
@@ -71,5 +75,11 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
+  },
+  "react-native": {
+    "crypto": "react-native-crypto"
+  },
+  "browser": {
+    "crypto": "react-native-crypto"
   }
 }
