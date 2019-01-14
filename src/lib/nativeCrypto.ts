@@ -30,8 +30,6 @@ export async function generateKey(length?: number): Promise<ArrayBuffer> {
   const hex = convertBufferToHex(buffer);
   const result = convertHexToArrayBuffer(hex);
 
-  console.log("result", result);
-
   return result;
 }
 
@@ -39,9 +37,7 @@ export async function createHmac(data: Buffer, key: Buffer): Promise<Buffer> {
   const hmac = crypto.createHmac(HMAC_ALGORITHM, key);
   hmac.update(data);
   const hex = hmac.digest("hex");
-  console.log("hex");
   const result = convertHexToBuffer(hex);
-  console.log("result", result);
 
   return result;
 }
@@ -51,25 +47,18 @@ export async function verifyHmac(
   key: Buffer
 ): Promise<boolean> {
   const cipherText: Buffer = convertHexToBuffer(payload.data);
-  console.log("cipherText", cipherText);
 
   const iv: Buffer = convertHexToBuffer(payload.iv);
-  console.log("iv", iv);
 
   const hmac: Buffer = convertHexToBuffer(payload.hmac);
-  console.log("hmac", hmac);
 
   const hmacHex: string = convertBufferToHex(hmac);
-  console.log("hmacHex", hmacHex);
 
   const unsigned: Buffer = concatBuffers(cipherText, iv);
-  console.log("unsigned", unsigned);
 
   const chmac: Buffer = await createHmac(unsigned, key);
-  console.log("chmac", chmac);
 
   const chmacHex: string = convertBufferToHex(chmac);
-  console.log("chmacHex", chmacHex);
 
   if (hmacHex === chmacHex) {
     return true;
@@ -88,9 +77,7 @@ export async function aesCbcEncrypt(
   cipher.end();
 
   const hex = cipher.final("hex");
-  console.log("hex");
   const result = convertHexToBuffer(hex);
-  console.log("result", result);
 
   return result;
 }
@@ -101,12 +88,9 @@ export async function aesCbcDecrypt(
   iv: Buffer
 ): Promise<Buffer> {
   const decipher = crypto.createDecipheriv(AES_ALGORITHM, key, iv);
-  decipher.update(data, "hex", "utf8");
-  const hex = decipher.final("hex");
-  console.log("hex");
-  const result = convertHexToBuffer(hex);
-  console.log("result", result);
-
+  let decrypted = decipher.update(data);
+  decrypted = concatBuffers(decrypted, decipher.final());
+  const result = decrypted;
   return result;
 }
 

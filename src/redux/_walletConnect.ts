@@ -73,7 +73,7 @@ export const walletConnectOnSessionRequest = (uri: string) => (
     const { pendingConnectors } = getState().walletConnect;
 
     dispatch({
-      action: WALLETCONNECT_SESSION_REQUEST,
+      type: WALLETCONNECT_SESSION_REQUEST,
       payload: [...pendingConnectors, walletConnector]
     });
 
@@ -105,7 +105,7 @@ export const walletConnectApproveSession = (
   });
 
   dispatch({
-    action: WALLETCONNECT_SESSION_APPROVAL,
+    type: WALLETCONNECT_SESSION_APPROVAL,
     payload: {
       activeConnectors: updatedActiveConnectors,
       pendingConnectors: updatedPendingConnectors
@@ -126,7 +126,7 @@ export const walletConnectRejectSession = (peerId: string) => (
   );
 
   dispatch({
-    action: WALLETCONNECT_SESSION_REJECTION,
+    type: WALLETCONNECT_SESSION_REJECTION,
     payload: updatedPendingConnectors
   });
 };
@@ -146,7 +146,7 @@ export const walletConnectKillSession = (peerId: string) => (
     }
   );
   dispatch({
-    action: WALLETCONNECT_SESSION_DISCONNECTED,
+    type: WALLETCONNECT_SESSION_DISCONNECTED,
     payload: updatedActiveConnectors
   });
 };
@@ -175,7 +175,7 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
     });
 
     dispatch({
-      action: WALLETCONNECT_CALL_REQUEST,
+      type: WALLETCONNECT_CALL_REQUEST,
       payload: updatedCallRequests
     });
 
@@ -196,7 +196,7 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
       }
     );
     dispatch({
-      action: WALLETCONNECT_SESSION_DISCONNECTED,
+      type: WALLETCONNECT_SESSION_DISCONNECTED,
       payload: updatedActiveConnectors
     });
   });
@@ -218,7 +218,7 @@ export const walletConnectApproveRequest = (
   );
 
   dispatch({
-    action: WALLETCONNECT_CALL_APPROVAL,
+    type: WALLETCONNECT_CALL_APPROVAL,
     payload: updatedCallRequests
   });
 };
@@ -239,7 +239,7 @@ export const walletConnectRejectRequest = (
   );
 
   dispatch({
-    action: WALLETCONNECT_CALL_REJECTION,
+    type: WALLETCONNECT_CALL_REJECTION,
     payload: updatedCallRequests
   });
 };

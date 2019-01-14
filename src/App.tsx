@@ -6,6 +6,7 @@ import {
   createBottomTabNavigator,
   createAppContainer
 } from "react-navigation";
+
 import { setTopLevelNavigator } from "./navigation";
 import { walletConnectInit } from "./redux/_walletConnect";
 import { accountInit } from "./redux/_account";
