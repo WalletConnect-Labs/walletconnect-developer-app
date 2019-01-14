@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		3D8FDB6D5A524321A87D0745 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F302ADAB3CE848549DA9027F /* libRNKeychain.a */; };
 		576E2C466B60476093FDB64E /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6346FB1AFA4948DFADB6CF6B /* libRNGestureHandler.a */; };
+		5BD53271E18B4A6C948C7325 /* libRCTCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 876900DDB2AC457087F1B47C /* libRCTCrypto.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		600B011C2BAE4CEDBC907D7D /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1315A49CA015438C8C5923EC /* libRNCamera.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -298,6 +299,13 @@
 			remoteGlobalIDString = 6478985F1F38BF9100DA1C12;
 			remoteInfo = "RNKeychain-tvOS";
 		};
+		42F12E7621E8017700519322 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBFD4824FDC64C14A14F355F /* RCTCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 32D980DD1BE9F11C00FA27E5;
+			remoteInfo = RCTCrypto;
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -364,7 +372,9 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7AA24A1667D542B69AF0D273 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		876900DDB2AC457087F1B47C /* libRCTCrypto.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCrypto.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		BBFD4824FDC64C14A14F355F /* RCTCrypto.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCrypto.xcodeproj; path = "../node_modules/react-native-simple-crypto/ios/RCTCrypto.xcodeproj"; sourceTree = "<group>"; };
 		E93A471D9A984C5F934D85B8 /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
 		ED988DE7750545EE8C2F7639 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		F302ADAB3CE848549DA9027F /* libRNKeychain.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNKeychain.a; sourceTree = "<group>"; };
@@ -400,6 +410,7 @@
 				600B011C2BAE4CEDBC907D7D /* libRNCamera.a in Frameworks */,
 				BD0BA01AE41F4D3EAE0F4697 /* libReactNativePermissions.a in Frameworks */,
 				3D8FDB6D5A524321A87D0745 /* libRNKeychain.a in Frameworks */,
+				5BD53271E18B4A6C948C7325 /* libRCTCrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +548,7 @@
 				1315A49CA015438C8C5923EC /* libRNCamera.a */,
 				E93A471D9A984C5F934D85B8 /* libReactNativePermissions.a */,
 				F302ADAB3CE848549DA9027F /* libRNKeychain.a */,
+				876900DDB2AC457087F1B47C /* libRCTCrypto.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -570,6 +582,14 @@
 			children = (
 				4278E8BA21D9272000DE4B5E /* libRNKeychain.a */,
 				4278E8BC21D9272000DE4B5E /* libRNKeychain.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42F12E7321E8017700519322 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42F12E7721E8017700519322 /* libRCTCrypto.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -611,6 +631,7 @@
 				ED988DE7750545EE8C2F7639 /* RNCamera.xcodeproj */,
 				5E2DECE6709547BC87305D52 /* ReactNativePermissions.xcodeproj */,
 				7AA24A1667D542B69AF0D273 /* RNKeychain.xcodeproj */,
+				BBFD4824FDC64C14A14F355F /* RCTCrypto.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -738,6 +759,10 @@
 				{
 					ProductGroup = ADBDB9201DFEBF0600ED6528 /* Products */;
 					ProjectRef = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
+				},
+				{
+					ProductGroup = 42F12E7321E8017700519322 /* Products */;
+					ProjectRef = BBFD4824FDC64C14A14F355F /* RCTCrypto.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1060,6 +1085,13 @@
 			remoteRef = 4278E8BB21D9272000DE4B5E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		42F12E7721E8017700519322 /* libRCTCrypto.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCrypto.a;
+			remoteRef = 42F12E7621E8017700519322 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1189,12 +1221,14 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-simple-crypto/ios/RCTCrypto/**",
 				);
 				INFOPLIST_FILE = walletconnectdeveloperappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1221,12 +1255,14 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-simple-crypto/ios/RCTCrypto/**",
 				);
 				INFOPLIST_FILE = walletconnectdeveloperappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1254,6 +1290,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-simple-crypto/ios/RCTCrypto/**",
 				);
 				INFOPLIST_FILE = walletconnectdeveloperapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1280,6 +1317,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
+					"$(SRCROOT)/../node_modules/react-native-simple-crypto/ios/RCTCrypto/**",
 				);
 				INFOPLIST_FILE = walletconnectdeveloperapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

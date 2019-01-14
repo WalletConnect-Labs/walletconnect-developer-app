@@ -15,6 +15,7 @@
     "react-native-keychain": "^3.0.0",
     "react-native-qrcode-scanner": "^1.1.0",
     "react-native-settings-list": "^1.8.0",
+    "react-native-simple-crypto": "^0.2.5",
     "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
