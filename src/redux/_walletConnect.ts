@@ -69,22 +69,22 @@ export const walletConnectOnSessionRequest = (uri: string) => (
     if (error) {
       throw error;
     }
-    const { peerId, peerMeta } = payload.params[0];
     const { pendingConnectors } = getState().walletConnect;
+
+    const { peerId, peerMeta } = payload.params[0];
 
     dispatch({
       type: WALLETCONNECT_SESSION_REQUEST,
       payload: [...pendingConnectors, walletConnector]
     });
 
-    navigate("SessionRequest", { peerId, peerMeta });
+    navigate("Request", { peerId, peerMeta, payload: { peerId, peerMeta } });
   });
 };
 
-export const walletConnectApproveSession = (
+export const walletConnectApproveSessionRequest = (
   peerId: string,
-  accounts: string[],
-  chainId: number
+  response: { accounts: string[]; chainId: number }
 ) => (dispatch: any, getState: any) => {
   const { activeConnectors, pendingConnectors } = getState().walletConnect;
 
@@ -94,8 +94,8 @@ export const walletConnectApproveSession = (
   pendingConnectors.forEach((walletConnector: WalletConnect) => {
     if (walletConnector.peerId === peerId) {
       walletConnector.approveSession({
-        accounts,
-        chainId
+        accounts: response.accounts,
+        chainId: response.chainId
       });
       asyncStorageSaveSession(walletConnector.session);
       updatedActiveConnectors.push(walletConnector);
@@ -115,7 +115,7 @@ export const walletConnectApproveSession = (
   dispatch(walletConnectSubscribeToEvents(peerId));
 };
 
-export const walletConnectRejectSession = (peerId: string) => (
+export const walletConnectRejectSessionRequest = (peerId: string) => (
   dispatch: any,
   getState: any
 ) => {
@@ -202,7 +202,7 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
   });
 };
 
-export const walletConnectApproveRequest = (
+export const walletConnectApproveCallRequest = (
   peerId: string,
   response: { id: number; result: any }
 ) => (dispatch: any, getState: any) => {
@@ -223,7 +223,7 @@ export const walletConnectApproveRequest = (
   });
 };
 
-export const walletConnectRejectRequest = (
+export const walletConnectRejectCallRequest = (
   peerId: string,
   response: { id: number; result: any }
 ) => (dispatch: any, getState: any) => {

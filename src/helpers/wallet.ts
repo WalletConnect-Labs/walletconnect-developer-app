@@ -86,8 +86,8 @@ export function switchActiveAccount(index: number) {
 
 export async function sendTransaction(transaction: any) {
   if (activeAccount) {
-    const transactionHash = await activeAccount.sendTransaction(transaction);
-    return transactionHash;
+    const { hash } = await activeAccount.sendTransaction(transaction);
+    return hash;
   } else {
     console.error("No Active Account");
   }
