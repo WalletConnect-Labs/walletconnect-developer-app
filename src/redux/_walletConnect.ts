@@ -65,7 +65,7 @@ export const walletConnectOnSessionRequest = (uri: string) => (
 ) => {
   const walletConnector = new WalletConnect({ uri, clientMeta: WalletMeta });
 
-  walletConnector.on("session_request", (error: any, payload: any) => {
+  walletConnector.on("wc_sessionRequest", (error: any, payload: any) => {
     if (error) {
       throw error;
     }
