@@ -149,7 +149,11 @@ export function uuid(): string {
 }
 
 export function getMeta(): IClientMeta | null {
-  if (typeof window === "undefined" || typeof window.location === "undefined") {
+  if (
+    typeof window === "undefined" ||
+    typeof document === "undefined" ||
+    typeof window.location === "undefined"
+  ) {
     return null;
   }
 

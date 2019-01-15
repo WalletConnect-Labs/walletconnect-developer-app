@@ -59,9 +59,11 @@ class ModalRequest extends React.Component<any, any> {
       payload.method === "wc_sessionRequest" ||
       payload.method === "wc_sessionUpdate";
 
+    console.log("approveRequest sessionRequest", sessionRequest);
+
     if (sessionRequest) {
       const response = { accounts: [address], chainId };
-      await walletConnectApproveSessionRequest(peerId, response);
+      await this.props.walletConnectApproveSessionRequest(peerId, response);
     } else {
       this.approveCallRequest();
     }
@@ -122,7 +124,7 @@ class ModalRequest extends React.Component<any, any> {
     };
 
     if (result) {
-      await walletConnectApproveCallRequest(peerId, response);
+      await this.props.walletConnectApproveCallRequest(peerId, response);
       this.onClose();
     } else {
       await this.rejectRequest();
@@ -138,9 +140,9 @@ class ModalRequest extends React.Component<any, any> {
       payload.method === "wc_sessionUpdate";
 
     if (sessionRequest) {
-      await walletConnectRejectSessionRequest(peerId);
+      await this.props.walletConnectRejectSessionRequest(peerId);
     } else {
-      await walletConnectRejectCallRequest(peerId, {
+      await this.props.walletConnectRejectCallRequest(peerId, {
         id: payload.id,
         result: null
       });
@@ -245,5 +247,10 @@ const reduxProps = (reduxState: any) => ({
 
 export default connect(
   reduxProps,
-  null
+  {
+    walletConnectApproveCallRequest,
+    walletConnectRejectCallRequest,
+    walletConnectApproveSessionRequest,
+    walletConnectRejectSessionRequest
+  }
 )(ModalRequest);

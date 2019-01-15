@@ -91,12 +91,15 @@ export const walletConnectApproveSessionRequest = (
   let updatedActiveConnectors = [...activeConnectors];
   let updatedPendingConnectors;
 
+  console.log("walletConnectApproveSessionRequest forEach pendingConnectors");
   pendingConnectors.forEach((walletConnector: WalletConnect) => {
     if (walletConnector.peerId === peerId) {
+      console.log("walletConnectApproveSessionRequest before", response);
       walletConnector.approveSession({
         accounts: response.accounts,
         chainId: response.chainId
       });
+      console.log("walletConnectApproveSessionRequest after", response);
       asyncStorageSaveSession(walletConnector.session);
       updatedActiveConnectors.push(walletConnector);
     } else {

@@ -199,7 +199,7 @@ class Connector {
 
   get clientMeta() {
     let clientMeta: IClientMeta | null = this._clientMeta;
-    if (!clientMeta || !Object.keys(clientMeta).length) {
+    if (!clientMeta) {
       clientMeta = this._clientMeta = getMeta();
     }
     return clientMeta;
