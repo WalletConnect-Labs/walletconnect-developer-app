@@ -1,6 +1,7 @@
 import {
   NavigationActions,
   NavigationContainerComponent,
+  NavigationNavigateAction,
   NavigationParams
 } from "react-navigation";
 
@@ -12,13 +13,30 @@ export function setTopLevelNavigator(
   _navigator = navigatorRef;
 }
 
-export function navigate(routeName: string, params: NavigationParams) {
+export function navigate(
+  routeName: string,
+  params?: NavigationParams,
+  action?: NavigationNavigateAction
+) {
   if (_navigator) {
     _navigator.dispatch(
       NavigationActions.navigate({
-        routeName,
-        params
+        routeName: routeName,
+        params: params,
+        action: action
       })
     );
   }
 }
+
+// export function openRequestModal(params?: NavigationParams) {
+//   navigate(
+//     "Modal",
+//     {},
+//     {
+//       type: "Navigation/NAVIGATE",
+//       routeName: "Request",
+//       params
+//     }
+//   );
+// }

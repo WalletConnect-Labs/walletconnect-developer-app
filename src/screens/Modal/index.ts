@@ -7,6 +7,7 @@ const ModalStack = createStackNavigator(
     Request: ModalRequest
   },
   {
+    initialRouteName: "Request",
     headerMode: "none",
     mode: "modal"
   }

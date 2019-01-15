@@ -28,6 +28,7 @@ class ScanScreen extends React.Component<any, any> {
     const uri = event.data;
 
     if (uri && typeof uri === "string") {
+      console.log("uri", uri);
       this.props.walletConnectOnSessionRequest(uri);
     }
 

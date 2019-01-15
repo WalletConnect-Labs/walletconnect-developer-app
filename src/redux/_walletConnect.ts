@@ -78,7 +78,7 @@ export const walletConnectOnSessionRequest = (uri: string) => (
       payload: [...pendingConnectors, walletConnector]
     });
 
-    navigate("Request", { peerId, peerMeta, payload: { peerId, peerMeta } });
+    navigate("Request", { peerId, peerMeta, payload });
   });
 };
 
@@ -179,7 +179,9 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
       payload: updatedCallRequests
     });
 
-    navigate("CallRequest", { peerId, payload });
+    const { peerMeta } = walletConnector;
+
+    navigate("Request", { peerId, peerMeta, payload });
   });
 
   walletConnector.on("disconnect", (error: any, payload: any) => {

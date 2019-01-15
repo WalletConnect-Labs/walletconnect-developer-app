@@ -10,7 +10,6 @@ import {
 
 class SessionRequest extends React.Component<any, any> {
   static propTypes = {
-    newSession: PropTypes.bool,
     payload: PropTypes.object.isRequired,
     approveRequest: PropTypes.func.isRequired,
     rejectRequest: PropTypes.func.isRequired
@@ -22,12 +21,22 @@ class SessionRequest extends React.Component<any, any> {
 
   render() {
     const { payload, approveRequest, rejectRequest } = this.props;
-    const { name, description, url } = payload.params[0].peerMeta;
-    const params = [
-      { label: "Name", value: name },
-      { label: "Description", value: description },
-      { label: "Url", value: url }
-    ];
+    const newSession = payload.method === "wc_sessionRequest";
+    let params: { label: string; value: any }[] = [];
+    if (newSession) {
+      const { name, description, url } = payload.params[0].peerMeta;
+      params = [
+        { label: "Name", value: name },
+        { label: "Description", value: description },
+        { label: "Url", value: url }
+      ];
+    } else {
+      const { accounts, chainId } = payload.params[0];
+      params = [
+        { label: "Accounts", value: accounts },
+        { label: "ChainId", value: chainId }
+      ];
+    }
     return (
       <SCard>
         {params.map(param => (
