@@ -2,6 +2,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import {
   SCard,
+  SCardTitle,
   SContainer,
   SParameter,
   SButtonContainer,
@@ -14,6 +15,8 @@ import {
 
 class TransactionRequest extends React.Component<any, any> {
   static propTypes = {
+    address: PropTypes.string,
+    chainId: PropTypes.number,
     payload: PropTypes.object.isRequired,
     approveRequest: PropTypes.func.isRequired,
     rejectRequest: PropTypes.func.isRequired
@@ -34,13 +37,18 @@ class TransactionRequest extends React.Component<any, any> {
     ];
     return (
       <SCard>
+        <SCardTitle>{"Transaction Request"}</SCardTitle>
         {params.map(param => (
           <SParameter key={param.label} param={param} />
         ))}
         <SContainer>
           <SButtonContainer>
-            <SButton onPress={rejectRequest}>{"Reject"}</SButton>
-            <SButton onPress={approveRequest}>{"Approve"}</SButton>
+            <SButton color="green" onPress={approveRequest}>
+              {"Approve"}
+            </SButton>
+            <SButton color="red" onPress={rejectRequest}>
+              {"Reject"}
+            </SButton>
           </SButtonContainer>
         </SContainer>
       </SCard>

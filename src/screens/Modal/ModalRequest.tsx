@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { StatusBar } from "react-native";
+import { connect } from "react-redux";
 import {
   sendTransaction,
   signMessage
@@ -49,26 +50,17 @@ const SCloseModal = styled.Text`
 const SConfirmationContainer = styled.View``;
 
 class ModalRequest extends React.Component<any, any> {
-  state = {
-    accounts: [],
-    chainId: 1,
-    sessionRequest: false
-  };
-  componentDidMount() {
-    const screenProps = this.props.navigation.state.params;
-    const sessionRequest =
-      screenProps.payload.method === "wc_sessionRequest" ||
-      screenProps.payload.method === "wc_sessionUpdate";
-    this.setState({ sessionRequest });
-  }
-
   approveRequest = async () => {
-    const { sessionRequest, accounts, chainId } = this.state;
+    const { address, chainId } = this.props;
     const screenProps = this.props.navigation.state.params;
-    const { peerId } = screenProps;
+    const { peerId, payload } = screenProps;
+
+    const sessionRequest =
+      payload.method === "wc_sessionRequest" ||
+      payload.method === "wc_sessionUpdate";
 
     if (sessionRequest) {
-      const response = { accounts, chainId };
+      const response = { accounts: [address], chainId };
       await walletConnectApproveSessionRequest(peerId, response);
     } else {
       this.approveCallRequest();
@@ -138,9 +130,12 @@ class ModalRequest extends React.Component<any, any> {
   };
 
   rejectRequest = async () => {
-    const { sessionRequest } = this.state;
     const screenProps = this.props.navigation.state.params;
     const { peerId, payload } = screenProps;
+
+    const sessionRequest =
+      payload.method === "wc_sessionRequest" ||
+      payload.method === "wc_sessionUpdate";
 
     if (sessionRequest) {
       await walletConnectRejectSessionRequest(peerId);
@@ -155,6 +150,7 @@ class ModalRequest extends React.Component<any, any> {
   };
 
   renderView = () => {
+    const { address, chainId } = this.props;
     const screenProps = this.props.navigation.state.params;
     const { payload } = screenProps;
 
@@ -163,6 +159,8 @@ class ModalRequest extends React.Component<any, any> {
         case "wc_sessionRequest":
           return (
             <SessionRequest
+              address={address}
+              chainId={chainId}
               payload={payload}
               approveRequest={this.approveRequest}
               rejectRequest={this.rejectRequest}
@@ -171,6 +169,8 @@ class ModalRequest extends React.Component<any, any> {
         case "wc_sessionUpdate":
           return (
             <SessionRequest
+              address={address}
+              chainId={chainId}
               payload={payload}
               approveRequest={this.approveRequest}
               rejectRequest={this.rejectRequest}
@@ -179,6 +179,8 @@ class ModalRequest extends React.Component<any, any> {
         case "eth_sendTransaction":
           return (
             <TransactionRequest
+              address={address}
+              chainId={chainId}
               payload={payload}
               approveRequest={this.approveRequest}
               rejectRequest={this.rejectRequest}
@@ -187,6 +189,8 @@ class ModalRequest extends React.Component<any, any> {
         case "eth_sign":
           return (
             <MessageRequest
+              address={address}
+              chainId={chainId}
               payload={payload}
               approveRequest={this.approveRequest}
               rejectRequest={this.rejectRequest}
@@ -197,6 +201,8 @@ class ModalRequest extends React.Component<any, any> {
         case "eth_signTypedData_v3":
           return (
             <TypedDataRequest
+              address={address}
+              chainId={chainId}
               payload={payload}
               approveRequest={this.approveRequest}
               rejectRequest={this.rejectRequest}
@@ -217,14 +223,12 @@ class ModalRequest extends React.Component<any, any> {
 
   render = () => {
     const screenProps = this.props.navigation.state.params;
-    const { peerMeta } = screenProps;
-    const peerName = peerMeta && peerMeta.name ? peerMeta.name : "";
     return (
       <SContainer>
         <SHeaderContainer>
           <SHeaderTextContainer>
             <SHeaderText>{`New request from`}</SHeaderText>
-            <SHeaderText>{peerName}</SHeaderText>
+            <SHeaderText>{screenProps.peerMeta.name}</SHeaderText>
           </SHeaderTextContainer>
           <SCloseModal onPress={this.onClose}>{"Close"}</SCloseModal>
         </SHeaderContainer>
@@ -234,4 +238,12 @@ class ModalRequest extends React.Component<any, any> {
   };
 }
 
-export default ModalRequest;
+const reduxProps = (reduxState: any) => ({
+  address: reduxState.account.address,
+  chainId: reduxState.account.chainId
+});
+
+export default connect(
+  reduxProps,
+  null
+)(ModalRequest);

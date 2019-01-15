@@ -10,6 +10,13 @@ export const SCard = styled.View`
   padding: 20px;
 `;
 
+export const SCardTitle = styled.Text`
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px auto;
+`;
+
 interface IContainerStyleProps {
   nesting: string;
 }
@@ -33,16 +40,6 @@ export const SButton = styled(Button)`
   flex: 1;
 `;
 
-// const SParameterSeparator = styled.View`
-//   width: 100%;
-//   position: absolute;
-//   left: 18px;
-//   bottom: 0;
-//   width: 100%;
-//   height: 2px;
-//   background-color: rgba(230, 230, 230, 0.22);
-// `;
-
 const SParameterLabel = styled.Text`
   font-weight: bold;
   margin-bottom: 6px;
@@ -55,7 +52,7 @@ const SParameterValue = styled.Text`
 const SParameter = (props: any) => {
   const { param, nesting } = props;
   const { label, value } = param;
-  return (
+  return value ? (
     <SContainer>
       <SParameterLabel>{label || "Unknown"}</SParameterLabel>
       {typeof value !== "object" ? (
@@ -70,7 +67,7 @@ const SParameter = (props: any) => {
         <SParameter nesting={nesting + 1} param={value} />
       )}
     </SContainer>
-  );
+  ) : null;
 };
 
 SParameter.propTypes = {
