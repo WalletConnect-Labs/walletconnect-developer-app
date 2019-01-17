@@ -91,15 +91,12 @@ export const walletConnectApproveSessionRequest = (
   let updatedActiveConnectors = [...activeConnectors];
   let updatedPendingConnectors;
 
-  console.log("walletConnectApproveSessionRequest forEach pendingConnectors");
   pendingConnectors.forEach((walletConnector: WalletConnect) => {
     if (walletConnector.peerId === peerId) {
-      console.log("walletConnectApproveSessionRequest before", response);
       walletConnector.approveSession({
         accounts: response.accounts,
         chainId: response.chainId
       });
-      console.log("walletConnectApproveSessionRequest after", response);
       asyncStorageSaveSession(walletConnector.session);
       updatedActiveConnectors.push(walletConnector);
     } else {
@@ -160,7 +157,8 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
 ) => {
   const walletConnector = getState().walletConnect.activeConnectors.filter(
     (activeConnector: WalletConnect) => activeConnector.peerId === peerId
-  );
+  )[0];
+
 
   walletConnector.on("call_request", (error: any, payload: any) => {
     if (error) {
@@ -170,7 +168,7 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
 
     const updatedWalletConnector = getState().walletConnect.activeConnectors.filter(
       (activeConnector: WalletConnect) => activeConnector.peerId === peerId
-    );
+    )[0];
 
     updatedCallRequests.push({
       walletConnector: updatedWalletConnector,
@@ -213,7 +211,7 @@ export const walletConnectApproveCallRequest = (
 ) => (dispatch: any, getState: any) => {
   const walletConnector = getState().walletConnect.activeConnectors.filter(
     (activeConnector: WalletConnect) => activeConnector.peerId === peerId
-  );
+  )[0];
 
   walletConnector.approveRequest(response);
 
@@ -234,7 +232,7 @@ export const walletConnectRejectCallRequest = (
 ) => (dispatch: any, getState: any) => {
   const walletConnector = getState().walletConnect.activeConnectors.filter(
     (activeConnector: WalletConnect) => activeConnector.peerId === peerId
-  );
+  )[0];
 
   walletConnector.rejectRequest(response);
 
