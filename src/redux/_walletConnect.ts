@@ -50,7 +50,7 @@ export const walletConnectInit = () => async (dispatch: any) => {
   try {
     const sessions = await asyncStorageLoadSessions();
     const activeConnectors = Object.values(sessions).map(
-      session => new WalletConnect({ session, clientMeta: WalletMeta })
+      session => new WalletConnect({ session }, WalletMeta)
     );
     dispatch({ type: WALLETCONNECT_INIT_SUCCESS, payload: activeConnectors });
   } catch (error) {
@@ -63,7 +63,7 @@ export const walletConnectOnSessionRequest = (uri: string) => (
   dispatch: any,
   getState: any
 ) => {
-  const walletConnector = new WalletConnect({ uri, clientMeta: WalletMeta });
+  const walletConnector = new WalletConnect({ uri }, WalletMeta);
 
   walletConnector.on("wc_sessionRequest", (error: any, payload: any) => {
     if (error) {
@@ -158,7 +158,6 @@ export const walletConnectSubscribeToEvents = (peerId: string) => (
   const walletConnector = getState().walletConnect.activeConnectors.filter(
     (activeConnector: WalletConnect) => activeConnector.peerId === peerId
   )[0];
-
 
   walletConnector.on("call_request", (error: any, payload: any) => {
     if (error) {

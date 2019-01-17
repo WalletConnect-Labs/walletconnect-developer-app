@@ -322,7 +322,7 @@ export function parseWalletConnectUri(str: string): IParseURIResult {
 
     const parameters = {
       key: result.key || "",
-      node: result.node || ""
+      bridge: result.bridge || ""
     };
 
     return parameters;

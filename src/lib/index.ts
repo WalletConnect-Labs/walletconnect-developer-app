@@ -1,10 +1,10 @@
-import Connector from "./connector";
-import { IWalletConnectOptions } from "./types";
+import Connector from "./core";
+import { IWalletConnectOptions, IClientMeta } from "./types";
 import * as cryptoLib from "./nativeCrypto";
 
 class RNWalletConnect extends Connector {
-  constructor(opts: IWalletConnectOptions) {
-    super(cryptoLib, opts);
+  constructor(opts: IWalletConnectOptions, clientMeta: IClientMeta) {
+    super(cryptoLib, opts, clientMeta);
   }
 }
 
