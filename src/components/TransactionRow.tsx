@@ -53,8 +53,6 @@ const TransactionRow = (props: any) => {
     convertAmountFromRawNumber(tx.value, tx.asset.decimals),
     8
   );
-  console.log("tx.to", tx.to);
-  console.log("address", address);
   const incomingTx = tx.to.toLowerCase() === address.toLowerCase();
   const date = new Date(convertStringToNumber(tx.timeStamp)).toLocaleString();
   const otherAddress = incomingTx ? tx.from : tx.to;

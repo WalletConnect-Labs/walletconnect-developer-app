@@ -35,7 +35,6 @@ export const accountInit = () => async (dispatch: any) => {
   try {
     const address = await initWallet();
     const accounts = [address];
-    console.log("accountInit() accounts", accounts);
 
     dispatch({ type: ACCOUNT_INIT_SUCCESS, payload: accounts });
     dispatch(accountGetAssets());
@@ -65,8 +64,6 @@ export const accountUpdateChainId = (chainId: number) => (
 
 export const accountGetAssets = () => async (dispatch: any, getState: any) => {
   const { address, chainId } = getState().account;
-  console.log("accountGetAssets() address", address);
-  console.log("accountGetAssets() chainId", chainId);
   dispatch({ type: ACCOUNT_GET_ASSETS_REQUEST });
   try {
     const assets = await apiGetAccountAssets(address, chainId);

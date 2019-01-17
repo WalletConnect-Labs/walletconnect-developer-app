@@ -45,7 +45,6 @@ class TypedDataRequest extends React.Component<any, any> {
       value: this.formatObjectValues(typedData.message)
     };
     const params = [address, domain, message];
-    console.log("TypedDataRequest params", params);
     return (
       <SCard>
         <SCardTitle>{"Typed Data Request"}</SCardTitle>

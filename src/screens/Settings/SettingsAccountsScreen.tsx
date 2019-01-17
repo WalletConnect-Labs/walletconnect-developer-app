@@ -17,7 +17,6 @@ class SettingsAccountsScreen extends React.Component<any, any> {
   };
   render = () => {
     const { accounts } = this.props;
-    console.log("SettingsAccountsScreen accounts", accounts);
     return (
       <ScrollViewContainer>
         {!!accounts.length ? (

@@ -59,8 +59,6 @@ class ModalRequest extends React.Component<any, any> {
       payload.method === "wc_sessionRequest" ||
       payload.method === "wc_sessionUpdate";
 
-    console.log("approveRequest sessionRequest", sessionRequest);
-
     if (sessionRequest) {
       const response = { accounts: [address], chainId };
       await this.props.walletConnectApproveSessionRequest(peerId, response);

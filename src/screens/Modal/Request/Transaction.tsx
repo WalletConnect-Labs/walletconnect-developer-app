@@ -24,7 +24,6 @@ class TransactionRequest extends React.Component<any, any> {
 
   render() {
     const { payload, approveRequest, rejectRequest } = this.props;
-    console.log("TransactionRequest", this.props);
     const tx = payload.params[0];
     const params = [
       { label: "From", value: tx.from },

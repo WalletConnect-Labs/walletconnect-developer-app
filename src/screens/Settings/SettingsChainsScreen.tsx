@@ -17,7 +17,6 @@ class SettingsChainsScreen extends React.Component<any, any> {
     this.props.navigation.navigate("SettingsList");
   };
   render = () => {
-    console.log("SettingsChainsScreen supportedChains", supportedChains);
     return (
       <ScrollViewContainer>
         {!!supportedChains.length ? (
