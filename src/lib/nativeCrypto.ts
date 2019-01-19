@@ -73,13 +73,17 @@ export async function aesCbcEncrypt(
   iv: Buffer
 ): Promise<Buffer> {
   const cipher = crypto.createCipheriv(AES_ALGORITHM, key, iv);
+  cipher.setEncoding("hex");
   cipher.write(data);
   cipher.end();
 
-  const hex = cipher.final("hex");
-  const result = convertHexToBuffer(hex);
-
-  return result;
+  const hex = cipher.read();
+  if (typeof hex === "string") {
+    const result = convertHexToBuffer(hex);
+    return result;
+  } else {
+    return new Buffer("");
+  }
 }
 
 export async function aesCbcDecrypt(
