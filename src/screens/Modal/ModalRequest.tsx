@@ -19,7 +19,7 @@ import {
   walletConnectRejectSessionRequest
 } from "../../redux/_walletConnect";
 
-const SContainer = styled.View`
+const SModalContainer = styled.View`
   flex: 1;
   background-color: rgb(0, 0, 0);
   justify-content: flex-end;
@@ -218,13 +218,13 @@ class ModalRequest extends React.Component<any, any> {
 
   onClose = () => {
     StatusBar.setBarStyle("dark-content", true);
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
   };
 
   render = () => {
     const screenProps = this.props.navigation.state.params;
     return (
-      <SContainer>
+      <SModalContainer>
         <SHeaderContainer>
           <SHeaderTextContainer>
             <SHeaderText>{`New request from`}</SHeaderText>
@@ -233,7 +233,7 @@ class ModalRequest extends React.Component<any, any> {
           <SCloseModal onPress={this.onClose}>{"Close"}</SCloseModal>
         </SHeaderContainer>
         <SConfirmationContainer>{this.renderView()}</SConfirmationContainer>
-      </SContainer>
+      </SModalContainer>
     );
   };
 }

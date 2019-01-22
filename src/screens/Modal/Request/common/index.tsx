@@ -79,4 +79,24 @@ SParameter.defaultProps = {
   nesting: 0
 };
 
-export { SParameter };
+const SActions = (props: any) => {
+  return (
+    <SContainer>
+      <SButtonContainer>
+        <SButton color="rgb(0, 153, 77)" onPress={props.approveRequest}>
+          {"Approve"}
+        </SButton>
+        <SButton color="rgb(214, 75, 71)" onPress={props.rejectRequest}>
+          {"Reject"}
+        </SButton>
+      </SButtonContainer>
+    </SContainer>
+  );
+};
+
+SActions.propTypes = {
+  approveRequest: PropTypes.func.isRequired,
+  rejectRequest: PropTypes.func.isRequired
+};
+
+export { SParameter, SActions };

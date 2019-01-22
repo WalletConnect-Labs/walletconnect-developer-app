@@ -1,13 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import {
-  SCard,
-  SCardTitle,
-  SContainer,
-  SParameter,
-  SButtonContainer,
-  SButton
-} from "./common";
+import { SCard, SCardTitle, SParameter, SActions } from "./common";
 import { getChainData } from "../../../helpers/utilities";
 
 class SessionRequest extends React.Component<any, any> {
@@ -71,16 +64,10 @@ class SessionRequest extends React.Component<any, any> {
         {params.map(param => (
           <SParameter key={param.label} param={param} />
         ))}
-        <SContainer>
-          <SButtonContainer>
-            <SButton color="green" onPress={approveRequest}>
-              {"Approve"}
-            </SButton>
-            <SButton color="red" onPress={rejectRequest}>
-              {"Reject"}
-            </SButton>
-          </SButtonContainer>
-        </SContainer>
+        <SActions
+          approveRequest={approveRequest}
+          rejectRequest={rejectRequest}
+        />
       </SCard>
     );
   }
