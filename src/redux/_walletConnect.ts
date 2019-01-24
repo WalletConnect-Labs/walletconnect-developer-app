@@ -37,7 +37,7 @@ const WALLETCONNECT_CALL_REJECTION =
 
 // -- Actions --------------------------------------------------------------- //
 
-const WalletMeta = {
+const clientMeta = {
   description: "WalletConnect Developer App",
   url: "https://walletconnect.org",
   icons: ["https://walletconnect.org/walletconnect-logo.png"],
@@ -45,12 +45,16 @@ const WalletMeta = {
   ssl: true
 };
 
+const nativeOptions = {
+  clientMeta
+};
+
 export const walletConnectInit = () => async (dispatch: any) => {
   dispatch({ type: WALLETCONNECT_INIT_REQUEST });
   try {
     const sessions = await asyncStorageLoadSessions();
     const activeConnectors = Object.values(sessions).map(
-      session => new WalletConnect({ session }, WalletMeta)
+      session => new WalletConnect({ session }, nativeOptions)
     );
     dispatch({ type: WALLETCONNECT_INIT_SUCCESS, payload: activeConnectors });
   } catch (error) {
@@ -63,7 +67,7 @@ export const walletConnectOnSessionRequest = (uri: string) => (
   dispatch: any,
   getState: any
 ) => {
-  const walletConnector = new WalletConnect({ uri }, WalletMeta);
+  const walletConnector = new WalletConnect({ uri }, nativeOptions);
 
   walletConnector.on("wc_sessionRequest", (error: any, payload: any) => {
     if (error) {
