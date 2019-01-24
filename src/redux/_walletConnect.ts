@@ -46,7 +46,8 @@ const clientMeta = {
 };
 
 const nativeOptions = {
-  clientMeta
+  clientMeta,
+  push: null
 };
 
 export const walletConnectInit = () => async (dispatch: any) => {

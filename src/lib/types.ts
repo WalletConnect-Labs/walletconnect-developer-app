@@ -153,7 +153,7 @@ export interface IPushServerOptions {
 
 export interface INativeWalletOptions {
   clientMeta: IClientMeta;
-  push?: IPushServerOptions;
+  push?: IPushServerOptions | null;
 }
 
 export interface IPushSubscription {
