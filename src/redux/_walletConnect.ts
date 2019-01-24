@@ -40,8 +40,8 @@ const WALLETCONNECT_CALL_REJECTION =
 // -- Actions --------------------------------------------------------------- //
 
 const getNativeOptions = async () => {
-  // const language = DEVICE_LANGUAGE.replace(/[-_](\w?)+/gi, "").toLowerCase();
-  // const token = await getFCMToken();
+  const language = DEVICE_LANGUAGE.replace(/[-_](\w?)+/gi, "").toLowerCase();
+  const token = await getFCMToken();
 
   const nativeOptions = {
     clientMeta: {
@@ -50,14 +50,14 @@ const getNativeOptions = async () => {
       icons: ["https://walletconnect.org/walletconnect-logo.png"],
       name: "WalletConnect",
       ssl: true
+    },
+    push: {
+      url: "https://push.walletconnect.org",
+      type: "fcm",
+      token: token,
+      peerMeta: true,
+      language: language
     }
-    // push: {
-    //   url: "https://push.walletconnect.org",
-    //   type: "fcm",
-    //   token: token,
-    //   peerMeta: true,
-    //   language: language
-    // }
   };
 
   return nativeOptions;
