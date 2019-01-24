@@ -14,6 +14,7 @@ import AccountStack from "./screens/Account";
 import ScanStack from "./screens/Scan";
 import SettingsStack from "./screens/Settings";
 import ModalStack from "./screens/Modal";
+import { initFCM } from "./helpers/firebase";
 
 const MainTabNavigator = createBottomTabNavigator(
   {
@@ -81,6 +82,7 @@ const AppContainer = createAppContainer(AppNavigator);
 class App extends React.Component<any, any> {
   componentDidMount() {
     // this.props.walletConnectInit();
+    initFCM();
     this.props.accountInit();
   }
   render = () => (

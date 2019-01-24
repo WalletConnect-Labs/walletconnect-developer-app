@@ -9,6 +9,8 @@ import {
   asyncStorageLoadSessions,
   asyncStorageDeleteSession
 } from "../helpers/asyncStorage";
+import { getFCMToken } from "../helpers/firebase";
+import { DEVICE_LANGUAGE } from "../helpers/constants";
 
 // -- Constants ------------------------------------------------------------- //
 
@@ -37,25 +39,39 @@ const WALLETCONNECT_CALL_REJECTION =
 
 // -- Actions --------------------------------------------------------------- //
 
-const clientMeta = {
-  description: "WalletConnect Developer App",
-  url: "https://walletconnect.org",
-  icons: ["https://walletconnect.org/walletconnect-logo.png"],
-  name: "WalletConnect",
-  ssl: true
-};
+const getNativeOptions = async () => {
+  const language = DEVICE_LANGUAGE.replace(/[-_](\w?)+/gi, "").toLowerCase();
+  const token = await getFCMToken();
 
-const nativeOptions = {
-  clientMeta,
-  push: null
+  const nativeOptions = {
+    clientMeta: {
+      description: "WalletConnect Developer App",
+      url: "https://walletconnect.org",
+      icons: ["https://walletconnect.org/walletconnect-logo.png"],
+      name: "WalletConnect",
+      ssl: true
+    },
+    push: {
+      url: "https://push.walletconnect.org",
+      type: "fcm",
+      token: token,
+      peerMeta: true,
+      language: language
+    }
+  };
+
+  return nativeOptions;
 };
 
 export const walletConnectInit = () => async (dispatch: any) => {
   dispatch({ type: WALLETCONNECT_INIT_REQUEST });
   try {
     const sessions = await asyncStorageLoadSessions();
-    const activeConnectors = Object.values(sessions).map(
-      session => new WalletConnect({ session }, nativeOptions)
+    const activeConnectors = await Promise.all(
+      Object.values(sessions).map(async session => {
+        const nativeOptions = await getNativeOptions();
+        new WalletConnect({ session }, nativeOptions);
+      })
     );
     dispatch({ type: WALLETCONNECT_INIT_SUCCESS, payload: activeConnectors });
   } catch (error) {
@@ -64,10 +80,12 @@ export const walletConnectInit = () => async (dispatch: any) => {
   }
 };
 
-export const walletConnectOnSessionRequest = (uri: string) => (
+export const walletConnectOnSessionRequest = (uri: string) => async (
   dispatch: any,
   getState: any
 ) => {
+  const nativeOptions = await getNativeOptions();
+
   const walletConnector = new WalletConnect({ uri }, nativeOptions);
 
   walletConnector.on("wc_sessionRequest", (error: any, payload: any) => {
