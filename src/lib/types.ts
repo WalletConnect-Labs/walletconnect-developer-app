@@ -157,6 +157,7 @@ export interface INativeWalletOptions {
 }
 
 export interface IPushSubscription {
+  bridge: string;
   topic: string;
   type: string;
   token: string;
